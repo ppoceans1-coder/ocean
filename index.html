@@ -257,7 +257,7 @@ box-shadow:0 8px 20px rgba(0,0,0,0.1);
 transform:translateY(-5px);
 color:#ff6600;
 }
-/*商品区域*/
+/*商品区域【图文匹配已修改】*/
 .products{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -524,7 +524,7 @@ padding:30px 20px;
 </head>
 <body>
 <div class="notice" id="noticeBar">
-🔥 嘻嘻嘻斯基采购节开启｜全球商品供应链平台
+🔥 嘻嘻嘻斯基采购节开启｜全球商品供应链采购平台
 <span class="close-notice" onclick="closeNotice()">✕</span>
 </div>
 
@@ -577,7 +577,7 @@ padding:30px 20px;
 
 <div class="search-area">
 <div class="search">
-<input placeholder="搜索商品，例如：电子产品、食品、服装" id="searchInput">
+<input placeholder="搜索商品，例如：蓝牙耳机、代餐燕麦、露营装备" id="searchInput">
 <button onclick="searchProduct()">搜索</button>
 </div>
 </div>
@@ -607,8 +607,8 @@ padding:30px 20px;
 <div onclick="goCategory('服装鞋包')">👕<br>服装鞋包</div>
 <div onclick="goCategory('食品饮料')">🍎<br>食品饮料</div>
 <div onclick="goCategory('家居用品')">🏠<br>家居用品</div>
-<div onclick="goCategory('工业设备')">⚙️<br>工业设备</div>
-<div onclick="goCategory('美容产品')">💄<br>美容产品</div>
+<div onclick="goCategory('户外用品')">⛺<br>户外用品</div>
+<div onclick="goCategory('母婴产品')">🍼<br>母婴产品</div>
 </div>
 </section>
 
@@ -617,39 +617,39 @@ padding:30px 20px;
 <div class="products" id="productWrap">
 <div class="product">
 <div class="product-img-box">
-<img src="https://picsum.photos/500/300?10">
+<img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
 </div>
-<h3>智能蓝牙设备</h3>
+<h3>TWS智能蓝牙耳机</h3>
 <div class="info">
 供应商：深圳科技厂家<br>
 起订量：100件<br>
-支持OEM/ODM
+支持OEM/ODM印标
 </div>
 <div class="price">$19.99</div>
 <button onclick="detail()">查看详情</button>
 </div>
 <div class="product">
 <div class="product-img-box">
-<img src="https://picsum.photos/500/300?11">
+<img src="https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=600">
 </div>
-<h3>低GI健康食品</h3>
+<h3>低GI谷物代餐燕麦</h3>
 <div class="info">
 供应商：食品生产厂家<br>
 起订量：500件<br>
-支持出口认证
+具备出口食品认证
 </div>
 <div class="price">$15.99</div>
 <button onclick="detail()">查看详情</button>
 </div>
 <div class="product">
 <div class="product-img-box">
-<img src="https://picsum.photos/500/300?12">
+<img src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=600">
 </div>
-<h3>智能家居产品</h3>
+<h3>智能人体感应夜灯</h3>
 <div class="info">
-供应商：认证工厂<br>
+供应商：智能家居认证工厂<br>
 起订量：200件<br>
-支持定制
+支持包装定制
 </div>
 <div class="price">$29.99</div>
 <button onclick="detail()">查看详情</button>
@@ -711,7 +711,7 @@ padding:30px 20px;
 <script>
 let langData = {
     cn: {
-        tipSearch:"搜索商品，例如：电子产品、食品、服装",
+        tipSearch:"搜索商品，例如：蓝牙耳机、代餐燕麦、露营装备",
         tipCompany:"您的公司名称",
         tipName:"联系人",
         tipContact:"联系电话/邮箱",
@@ -720,7 +720,7 @@ let langData = {
         titleInquiry:"立即发起采购询价"
     },
     en: {
-        tipSearch:"Search products: electronics,food,clothing",
+        tipSearch:"Search products: earbuds,oatmeal,camping gear",
         tipCompany:"Company Name",
         tipName:"Contact Person",
         tipContact:"Phone / Email",
@@ -830,19 +830,19 @@ let wrap=document.getElementById("productWrap");
 let html=`
 <div class="product">
 <div class="product-img-box">
-<img src="https://picsum.photos/500/300?13">
+<img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600">
 </div>
-<h3>户外露营装备</h3>
-<div class="info">供应商：户外用品工厂<br>起订量：300件<br>支持混批</div>
+<h3>户外折叠露营桌椅套装</h3>
+<div class="info">供应商：户外用品工厂<br>起订量：300件<br>支持混批采购</div>
 <div class="price">$32.50</div>
 <button onclick="detail()">查看详情</button>
 </div>
 <div class="product">
 <div class="product-img-box">
-<img src="https://picsum.photos/500/300?14">
+<img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600">
 </div>
-<h3>母婴日用产品</h3>
-<div class="info">供应商：母婴认证工厂<br>起订量：200件<br>质检齐全</div>
+<h3>婴儿纯棉防水隔尿垫</h3>
+<div class="info">供应商：母婴用品工厂<br>起订量：200件<br>全套质检报告</div>
 <div class="price">$21.80</div>
 <button onclick="detail()">查看详情</button>
 </div>
@@ -886,7 +886,7 @@ serviceMask.onclick=function(e){if(e.target===serviceMask) closeService();}
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>商品详情 - 嘻嘻嘻斯基</title>
+<title>TWS智能蓝牙耳机 - 嘻嘻嘻斯基</title>
 <style>
 *{
 margin:0;
@@ -980,24 +980,71 @@ padding:25px;
 </header>
 <div class="container">
 <div class="img-box">
-<img src="https://picsum.photos/600/400?10">
+<img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
 </div>
 <div class="info">
-<h1>智能蓝牙设备</h1>
+<h1>TWS智能蓝牙耳机</h1>
 <div class="price">$19.99</div>
 <div class="desc">
 供应商：深圳科技厂家<br>
 起订量：100件<br>
-支持OEM/ODM定制<br>
-具备出口相关认证，适合跨境采购。
+支持OEM/ODM印标定制<br>
+蓝牙5.3、高清通话、持久续航，具备出口相关认证，适合跨境采购。
 </div>
-<button class="btn" onclick="parent.openInquiry()">立即询价</button>
+<button class="btn" onclick="openInquiry()">立即询价</button>
 <button class="btn gray" onclick="alert('收藏成功')">收藏商品</button>
 </div>
 </div>
 <footer>
 © 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
 </footer>
+
+<script>
+// 复用询价弹窗函数
+const mask=document.createElement('div');
+mask.innerHTML=`
+<div class="modal-mask" id="inquiryMask">
+<div class="modal">
+<span class="close-modal" onclick="closeInquiry()">✕</span>
+<h3>立即发起采购询价</h3>
+<input type="text" placeholder="您的公司名称">
+<input type="text" placeholder="联系人">
+<input type="text" placeholder="联系电话/邮箱">
+<textarea rows="4" placeholder="描述想要采购的商品、数量、需求"></textarea>
+<button class="modal-submit" onclick="submitInquiry()">提交询价</button>
+</div>
+</div>
+`;
+document.body.appendChild(mask);
+const style = document.createElement('style');
+style.innerHTML=`
+.modal-mask{
+position:fixed;left:0;top:0;width:100%;height:100%;
+background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:9999;
+}
+.modal{width:460px;background:#fff;border-radius:12px;padding:30px;position:relative;}
+.close-modal{position:absolute;right:15px;top:15px;font-size:22px;cursor:pointer;color:#999;}
+.modal h3{margin-bottom:20px;font-size:22px;color:#333;}
+.modal input,.modal textarea{width:100%;border:1px solid #ddd;padding:12px;margin-bottom:15px;border-radius:6px;outline:none;font-size:15px;}
+.modal-submit{width:100%;padding:13px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;}
+@media(max-width:500px){.modal{width:90%;}}
+`;
+document.head.appendChild(style);
+
+function openInquiry(){
+document.getElementById("inquiryMask").style.display="flex";
+}
+function closeInquiry(){
+document.getElementById("inquiryMask").style.display="none";
+}
+function submitInquiry(){
+alert("询价信息提交成功！我们将尽快联系您");
+closeInquiry();
+}
+document.getElementById("inquiryMask").onclick=function(e){
+if(e.target===this) closeInquiry();
+}
+</script>
 </body>
 </html><!DOCTYPE html>
 <html lang="zh-CN">
@@ -1052,124 +1099,53 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 <select>
 <option>全部分类</option>
 <option>电子科技</option>
+<option>食品饮料</option>
 <option>家居用品</option>
-<option>服装鞋包</option>
+<option>户外用品</option>
+<option>母婴产品</option>
 </select>
 <button class="btn">筛选</button>
 </div>
 <div class="product-list">
 <div class="item" onclick="location.href='product-detail.html'">
-<img src="https://picsum.photos/500/300?10">
+<img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
 <div class="item-text">
-<h3>智能蓝牙设备</h3>
+<h3>TWS智能蓝牙耳机</h3>
 <div class="price">$19.99</div>
 <p>起订量：100件</p>
 </div>
 </div>
 <div class="item" onclick="location.href='product-detail.html'">
-<img src="https://picsum.photos/500/300?11">
+<img src="https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=600">
 <div class="item-text">
-<h3>低GI健康食品</h3>
+<h3>低GI谷物代餐燕麦</h3>
 <div class="price">$15.99</div>
 <p>起订量：500件</p>
 </div>
 </div>
 <div class="item" onclick="location.href='product-detail.html'">
-<img src="https://picsum.photos/500/300?12">
+<img src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=600">
 <div class="item-text">
-<h3>智能家居产品</h3>
+<h3>智能人体感应夜灯</h3>
 <div class="price">$29.99</div>
 <p>起订量：200件</p>
 </div>
 </div>
 <div class="item" onclick="location.href='product-detail.html'">
-<img src="https://picsum.photos/500/300?13">
+<img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600">
 <div class="item-text">
-<h3>户外露营装备</h3>
+<h3>户外折叠露营桌椅套装</h3>
 <div class="price">$32.50</div>
 <p>起订量：300件</p>
 </div>
 </div>
 <div class="item" onclick="location.href='product-detail.html'">
-<img src="https://picsum.photos/500/300?14">
+<img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600">
 <div class="item-text">
-<h3>母婴日用产品</h3>
+<h3>婴儿纯棉防水隔尿垫</h3>
 <div class="price">$21.80</div>
 <p>起订量：200件</p>
 </div>
-</div>
-</div>
-</div>
-<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>供应商 - 嘻嘻嘻斯基</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
-body{background:#f5f6f8;}
-header{
-height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
-padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
-}
-.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
-nav a{text-decoration:none;color:#333;margin:0 14px;}
-nav a:hover{color:#ff6600;}
-.container{padding:40px 8%;}
-.title{text-align:center;font-size:32px;margin-bottom:30px;}
-.supplier-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
-.supp-item{background:#fff;padding:22px;border-radius:10px;}
-.supp-item h3{margin-bottom:10px;color:#222;}
-.tag{display:inline-block;background:#ffe8d6;color:#ff6600;padding:3px 8px;border-radius:3px;font-size:13px;margin:3px;}
-.contact-btn{margin-top:14px;background:#ff6600;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;}
-footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
-@media(max-width:900px){.supplier-list{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:500px){.supplier-list{grid-template-columns:1fr;}}
-</style>
-</head>
-<body>
-<header>
-<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
-<nav>
-<a href="index.html">首页</a>
-<a href="products.html">商品导航</a>
-<a href="suppliers.html" style="color:#ff6600">供应商</a>
-<a href="service.html">采购服务</a>
-<a href="contact.html">联系我们</a>
-</nav>
-</header>
-<div class="container">
-<h2 class="title">合作供应商名录</h2>
-<div class="supplier-list">
-<div class="supp-item">
-<h3>深圳智能电子工厂</h3>
-<p>主营：蓝牙耳机、智能家居硬件</p>
-<div style="margin:8px 0;">
-<span class="tag">支持OEM</span>
-<span class="tag">出口资质</span>
-</div>
-<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
-</div>
-<div class="supp-item">
-<h3>健康食品生产基地</h3>
-<p>主营：代餐、低GI休闲食品</p>
-<div style="margin:8px 0;">
-<span class="tag">食品质检</span>
-<span class="tag">可混批</span>
-</div>
-<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
-</div>
-<div class="supp-item">
-<h3>户外用品制造有限公司</h3>
-<p>主营：露营装备、户外工具</p>
-<div style="margin:8px 0;">
-<span class="tag">定制印花</span>
-<span class="tag">跨境专供</span>
-</div>
-<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
 </div>
 </div>
 </div>
@@ -1288,21 +1264,4 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 <h2 class="title">联系我们</h2>
 <div class="info-block">
 <h3>联系方式</h3>
-<p>📞 业务热线：400-888-XXXX</p>
-<p>📧 商务邮箱：business@xixixisiji.com</p>
-<p>🕒 工作时间：周一至周六 9:00 - 18:00</p>
-<p>📍 办公地址：广东省深圳市龙华区</p>
-<br>
-<p>欢迎采购商、工厂洽谈入驻与合作！</p>
-</div>
-<div class="form-block">
-<h3>在线留言</h3>
-<input type="text" placeholder="您的姓名/公司">
-<input type="text" placeholder="联系电话">
-<textarea rows="5" placeholder="请输入您想咨询的内容"></textarea>
-<button class="submit-btn" onclick="alert('留言提交成功')">提交留言</button>
-</div>
-<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
-</div>
-</body>
-</html>
+<p>📞 业务热线
