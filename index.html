@@ -3,6 +3,889 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嘻嘻嘻斯基 - 全球供应链采购平台</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Microsoft YaHei",Arial,sans-serif;
+}
+body{
+background:#f5f6f8;
+color:#333;
+line-height:1.6;
+}
+/*公告栏*/
+.notice{
+height:40px;
+background:#fff3e6;
+color:#ff6600;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+position:relative;
+}
+.notice .close-notice{
+position:absolute;
+right:20px;
+cursor:pointer;
+padding:0 8px;
+}
+/*导航*/
+header{
+height:80px;
+background:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 8%;
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:999;
+transition:background 0.3s;
+}
+header.scroll-bg{
+background:rgba(255,255,255,0.96);
+}
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#ff6600;
+line-height:1.2;
+cursor:pointer;
+}
+.logo span{
+display:block;
+font-size:12px;
+color:#888;
+font-weight:normal;
+margin-top:4px;
+}
+.nav-wrap{
+display:flex;
+align-items:center;
+gap:16px;
+}
+nav a{
+text-decoration:none;
+color:#333;
+margin:0 15px;
+font-size:15px;
+transition:color 0.3s;
+}
+nav a:hover{
+color:#ff6600;
+}
+.lang-switch{
+border:1px solid #ddd;
+padding:6px 10px;
+border-radius:4px;
+cursor:pointer;
+font-size:14px;
+user-select:none;
+}
+.btn{
+background:#ff6600;
+border:none;
+color:white;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+font-size:15px;
+transition:background 0.3s;
+}
+.btn:hover{
+background:#e55a00;
+}
+/*移动端汉堡菜单*/
+.menu-btn{
+display:none;
+font-size:26px;
+color:#333;
+cursor:pointer;
+user-select:none;
+}
+/*轮播banner*/
+.banner-box{
+width:100%;
+height:350px;
+overflow:hidden;
+position:relative;
+}
+.banner{
+width:300%;
+height:100%;
+display:flex;
+transition:transform 0.6s ease;
+}
+.banner-item{
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#fff;
+text-align:center;
+}
+.b1{
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://picsum.photos/1600/500?20");
+}
+.b2{
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://picsum.photos/1600/500?21");
+}
+.b3{
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://picsum.photos/1600/500?22");
+}
+.banner h1{
+font-size:45px;
+margin-bottom:10px;
+}
+.banner p{
+margin-top:20px;
+font-size:20px;
+opacity:0.9;
+}
+.banner-dots{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+}
+.dot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:rgba(255,255,255,0.4);
+cursor:pointer;
+}
+.dot.active{
+background:#fff;
+}
+/*搜索区域*/
+.search-area{
+background:white;
+padding:30px 8%;
+display:flex;
+justify-content:center;
+}
+.search{
+width:650px;
+height:55px;
+display:flex;
+}
+.search input{
+flex:1;
+border:1px solid #ddd;
+padding:0 20px;
+font-size:16px;
+outline:none;
+border-right:none;
+border-radius:6px 0 0 6px;
+}
+.search input:focus{
+border-color:#ff6600;
+}
+.search button{
+width:120px;
+background:#ff6600;
+color:white;
+border:none;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+font-size:16px;
+transition:background 0.3s;
+}
+.search button:hover{
+background:#e55a00;
+}
+/*筛选栏*/
+.filter-bar{
+padding:20px 8%;
+background:#fff;
+margin-bottom:10px;
+}
+.filter-row{
+display:flex;
+flex-wrap:wrap;
+gap:16px;
+align-items:center;
+}
+.filter-row label{
+font-size:14px;
+color:#555;
+}
+.filter-row input, .filter-row select{
+padding:8px 10px;
+border:1px solid #ddd;
+border-radius:4px;
+outline:none;
+}
+/*通用容器*/
+.container{
+padding:30px 8% 60px;
+}
+.title{
+text-align:center;
+font-size:35px;
+margin-bottom:35px;
+color:#222;
+}
+/*分类区域*/
+.category{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:20px;
+}
+.category div{
+background:white;
+padding:25px 10px;
+text-align:center;
+border-radius:10px;
+transition:all 0.3s ease;
+font-size:15px;
+cursor:pointer;
+}
+.category div:hover{
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+transform:translateY(-5px);
+color:#ff6600;
+}
+/*商品区域*/
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:30px;
+}
+.product{
+background:white;
+padding:20px;
+border-radius:12px;
+transition:.3s ease;
+overflow:hidden;
+}
+.product:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+.product-img-box{
+overflow:hidden;
+border-radius:10px;
+}
+.product img{
+width:100%;
+height:220px;
+object-fit:cover;
+transition:transform 0.4s;
+}
+.product:hover img{
+transform:scale(1.05);
+}
+.product h3{
+font-size:22px;
+margin:15px 0;
+font-weight:600;
+}
+.info{
+color:#777;
+line-height:2;
+font-size:14px;
+margin-bottom:10px;
+}
+.price{
+color:#ff6600;
+font-size:25px;
+font-weight:bold;
+margin:10px 0;
+}
+.product button{
+margin-top:15px;
+background:#ff6600;
+color:white;
+border:none;
+padding:12px 30px;
+border-radius:5px;
+cursor:pointer;
+transition:background 0.3s;
+width:100%;
+}
+.product button:hover{
+background:#e55a00;
+}
+.load-more-box{
+text-align:center;
+}
+/*供应商区块*/
+.factory{
+background:white;
+padding:50px;
+text-align:center;
+margin-top:50px;
+border-radius:12px;
+}
+.factory h2{
+font-size:35px;
+margin-bottom:20px;
+}
+.factory p{
+color:#666;
+font-size:16px;
+margin-bottom:20px;
+}
+/*客户案例*/
+.case-area{
+padding:60px 8%;
+}
+.case-list{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+.case-item{
+background:#fff;
+border-radius:10px;
+padding:20px;
+text-align:center;
+}
+/*页脚*/
+footer{
+background:#222;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:40px;
+font-size:14px;
+}
+/*回到顶部*/
+.backtop{
+width:45px;
+height:45px;
+background:#ff6600;
+border-radius:50%;
+position:fixed;
+right:30px;
+bottom:90px;
+color:#fff;
+text-align:center;
+line-height:45px;
+font-size:20px;
+cursor:pointer;
+display:none;
+z-index:99;
+}
+/*悬浮在线客服*/
+.service-float{
+width:45px;
+height:45px;
+background:#0088ff;
+border-radius:50%;
+position:fixed;
+right:30px;
+bottom:30px;
+color:#fff;
+text-align:center;
+line-height:45px;
+font-size:20px;
+cursor:pointer;
+z-index:99;
+}
+/*弹窗样式*/
+.modal-mask{
+position:fixed;
+left:0;top:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+.modal{
+width:460px;
+background:#fff;
+border-radius:12px;
+padding:30px;
+position:relative;
+}
+.modal .close-modal{
+position:absolute;
+right:15px;top:15px;
+font-size:22px;
+cursor:pointer;
+color:#999;
+}
+.modal h3{
+margin-bottom:20px;
+font-size:22px;
+color:#333;
+}
+.modal input, .modal textarea{
+width:100%;
+border:1px solid #ddd;
+padding:12px;
+margin-bottom:15px;
+border-radius:6px;
+outline:none;
+font-size:15px;
+}
+.modal-submit{
+width:100%;
+padding:13px;
+background:#ff6600;
+color:#fff;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+/*响应式适配*/
+@media(max-width:900px){
+.nav-wrap{
+flex:1;
+justify-content:flex-end;
+}
+nav{
+display:none;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:#fff;
+flex-direction:column;
+padding:20px 0;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+nav.active{
+display:flex;
+}
+nav a{
+margin:10px 0;
+text-align:center;
+}
+.menu-btn{
+display:block;
+order:-1;
+margin-right:10px;
+}
+.category{
+grid-template-columns:repeat(2,1fr);
+}
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+.case-list{
+grid-template-columns:repeat(2,1fr);
+}
+.search{
+width:100%;
+}
+.banner h1{
+font-size:32px;
+}
+.banner p{
+font-size:16px;
+}
+.title{
+font-size:28px;
+}
+.modal{
+width:90%;
+}
+}
+@media(max-width:500px){
+.products{
+grid-template-columns:1fr;
+}
+.category{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+.case-list{
+grid-template-columns:1fr;
+}
+header{
+padding:0 5%;
+}
+.container{
+padding:40px 5%;
+}
+.factory{
+padding:30px 20px;
+}
+}
+</style>
+</head>
+<body>
+<div class="notice" id="noticeBar">
+🔥 嘻嘻嘻斯基采购节开启｜全球商品供应链平台
+<span class="close-notice" onclick="closeNotice()">✕</span>
+</div>
+
+<header id="header">
+<div class="logo" onclick="location.href='index.html'">
+嘻嘻嘻斯基
+<span>Xixixisiji Global Supply</span>
+</div>
+<div class="nav-wrap">
+<div class="menu-btn" id="menuBtn">☰</div>
+<nav id="navBox">
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html">联系我们</a>
+</nav>
+<span class="lang-switch" id="langBtn">中文 / EN</span>
+</div>
+<button class="btn" onclick="openInquiry()">立即询价</button>
+</header>
+
+<div class="banner-box">
+<div class="banner" id="bannerWrap">
+<div class="banner-item b1">
+<div>
+<h1>嘻嘻嘻斯基商品导航</h1>
+<p>发现全球优质商品，一站式采购</p>
+</div>
+</div>
+<div class="banner-item b2">
+<div>
+<h1>源头工厂直供</h1>
+<p>省去中间商，拿到优势采购价格</p>
+</div>
+</div>
+<div class="banner-item b3">
+<div>
+<h1>全球供应链服务</h1>
+<p>支持OEM定制、出口资质一站式对接</p>
+</div>
+</div>
+</div>
+<div class="banner-dots">
+<span class="dot active" data-index="0"></span>
+<span class="dot" data-index="1"></span>
+<span class="dot" data-index="2"></span>
+</div>
+</div>
+
+<div class="search-area">
+<div class="search">
+<input placeholder="搜索商品，例如：电子产品、食品、服装" id="searchInput">
+<button onclick="searchProduct()">搜索</button>
+</div>
+</div>
+
+<div class="filter-bar">
+<div class="filter-row">
+<label>价格区间：</label>
+<input type="number" id="minPrice" placeholder="最低">
+<span>~</span>
+<input type="number" id="maxPrice" placeholder="最高">
+
+<label style="margin-left:12px">起订量：</label>
+<select id="moqSelect">
+<option value="0">不限</option>
+<option value="100">≤100件</option>
+<option value="500">≤500件</option>
+<option value="1000">≤1000件</option>
+</select>
+<button class="btn" style="padding:6px 14px;margin-left:10px" onclick="filterProduct()">筛选商品</button>
+</div>
+</div>
+
+<section class="container">
+<h2 class="title">商品分类</h2>
+<div class="category">
+<div onclick="goCategory('电子科技')">📱<br>电子科技</div>
+<div onclick="goCategory('服装鞋包')">👕<br>服装鞋包</div>
+<div onclick="goCategory('食品饮料')">🍎<br>食品饮料</div>
+<div onclick="goCategory('家居用品')">🏠<br>家居用品</div>
+<div onclick="goCategory('工业设备')">⚙️<br>工业设备</div>
+<div onclick="goCategory('美容产品')">💄<br>美容产品</div>
+</div>
+</section>
+
+<section class="container">
+<h2 class="title">热门商品</h2>
+<div class="products" id="productWrap">
+<div class="product">
+<div class="product-img-box">
+<img src="https://picsum.photos/500/300?10">
+</div>
+<h3>智能蓝牙设备</h3>
+<div class="info">
+供应商：深圳科技厂家<br>
+起订量：100件<br>
+支持OEM/ODM
+</div>
+<div class="price">$19.99</div>
+<button onclick="detail()">查看详情</button>
+</div>
+<div class="product">
+<div class="product-img-box">
+<img src="https://picsum.photos/500/300?11">
+</div>
+<h3>低GI健康食品</h3>
+<div class="info">
+供应商：食品生产厂家<br>
+起订量：500件<br>
+支持出口认证
+</div>
+<div class="price">$15.99</div>
+<button onclick="detail()">查看详情</button>
+</div>
+<div class="product">
+<div class="product-img-box">
+<img src="https://picsum.photos/500/300?12">
+</div>
+<h3>智能家居产品</h3>
+<div class="info">
+供应商：认证工厂<br>
+起订量：200件<br>
+支持定制
+</div>
+<div class="price">$29.99</div>
+<button onclick="detail()">查看详情</button>
+</div>
+</div>
+<div class="load-more-box">
+<button class="btn" id="loadMoreBtn">加载更多商品</button>
+</div>
+</section>
+
+<section class="factory">
+<h2>全球供应商资源</h2>
+<p>严格筛选厂家，为采购商提供稳定供应链服务</p>
+<br>
+<button class="btn" onclick="location.href='suppliers.html'">寻找供应商</button>
+</section>
+
+<section class="case-area">
+<h2 class="title">合作客户案例</h2>
+<div class="case-list">
+<div class="case-item">跨境贸易采购商 A</div>
+<div class="case-item">线下连锁商超</div>
+<div class="case-item">海外电商卖家</div>
+<div class="case-item">品牌自有ODM厂商</div>
+</div>
+</section>
+
+<footer>
+© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
+</footer>
+
+<div class="backtop" id="backTop">↑</div>
+<div class="service-float" onclick="openService()">💬</div>
+
+<div class="modal-mask" id="inquiryMask">
+<div class="modal">
+<span class="close-modal" onclick="closeInquiry()">✕</span>
+<h3>立即发起采购询价</h3>
+<input type="text" placeholder="您的公司名称">
+<input type="text" placeholder="联系人">
+<input type="text" placeholder="联系电话/邮箱">
+<textarea rows="4" placeholder="描述想要采购的商品、数量、需求"></textarea>
+<button class="modal-submit" onclick="submitInquiry()">提交询价</button>
+</div>
+</div>
+
+<div class="modal-mask" id="serviceMask">
+<div class="modal">
+<span class="close-modal" onclick="closeService()">✕</span>
+<h3>在线客服咨询</h3>
+<p style="margin-bottom:15px">工作时间：周一至周六 9:00-18:00</p>
+<input type="text" placeholder="您的姓名">
+<input type="text" placeholder="联系方式">
+<textarea rows="4" placeholder="请输入您想咨询的问题"></textarea>
+<button class="modal-submit" onclick="sendServiceMsg()">发送咨询</button>
+</div>
+</div>
+
+<script>
+let langData = {
+    cn: {
+        tipSearch:"搜索商品，例如：电子产品、食品、服装",
+        tipCompany:"您的公司名称",
+        tipName:"联系人",
+        tipContact:"联系电话/邮箱",
+        tipDemand:"描述想要采购的商品、数量、需求",
+        btnSubmit:"提交询价",
+        titleInquiry:"立即发起采购询价"
+    },
+    en: {
+        tipSearch:"Search products: electronics,food,clothing",
+        tipCompany:"Company Name",
+        tipName:"Contact Person",
+        tipContact:"Phone / Email",
+        tipDemand:"Describe products,quantity,requirements",
+        btnSubmit:"Submit Inquiry",
+        titleInquiry:"Submit Purchase Inquiry"
+    };
+let isCN = true;
+const langBtn = document.getElementById("langBtn");
+langBtn.onclick = function(){
+    isCN = !isCN;
+    if(isCN){
+        this.innerText = "中文 / EN";
+        document.documentElement.lang="zh-CN";
+        alert("已切换中文");
+    }else{
+        this.innerText = "ZH / English";
+        document.documentElement.lang="en";
+        alert("Switched to English");
+    }
+};
+
+function closeNotice(){
+document.getElementById("noticeBar").style.display="none";
+}
+
+const menuBtn = document.getElementById('menuBtn');
+const navBox = document.getElementById('navBox');
+menuBtn.addEventListener('click',()=>{
+navBox.classList.toggle('active');
+})
+document.addEventListener('click',function(e){
+if(!header.contains(e.target)){
+navBox.classList.remove('active');
+}
+})
+
+window.addEventListener("scroll",function(){
+const header=document.getElementById("header");
+const backtop=document.getElementById("backTop");
+if(window.scrollY>80){
+header.classList.add("scroll-bg");
+backtop.style.display="block";
+}else{
+header.classList.remove("scroll-bg");
+backtop.style.display="none";
+}
+})
+document.getElementById("backTop").onclick=function(){
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+const bannerWrap=document.getElementById("bannerWrap");
+const dots=document.querySelectorAll(".dot");
+let index=0;
+function slideBanner(){
+index++;
+if(index>2) index=0;
+updateBanner();
+}
+function updateBanner(){
+bannerWrap.style.transform=`translateX(-${index*100}%)`;
+dots.forEach(d=>d.classList.remove("active"));
+dots[index].classList.add("active");
+}
+dots.forEach(dot=>{
+dot.onclick=function(){
+index=Number(this.dataset.index);
+updateBanner();
+}
+})
+let timer=setInterval(slideBanner,4000);
+document.querySelector(".banner-box").onmouseover=()=>clearInterval(timer);
+document.querySelector(".banner-box").onmouseout=()=>timer=setInterval(slideBanner,4000);
+
+const searchInput=document.getElementById("searchInput");
+function searchProduct(){
+let key=searchInput.value.trim();
+if(key){
+alert("正在搜索商品："+key);
+searchInput.value="";
+}else{
+alert("请输入商品名称");
+}
+}
+searchInput.addEventListener("keydown",function(e){
+if(e.key==="Enter") searchProduct();
+})
+
+function goCategory(name){
+alert("进入分类："+name);
+location.href="products.html";
+}
+
+function detail(){
+window.location.href="product-detail.html";
+}
+
+let loadBtn=document.getElementById("loadMoreBtn");
+let loadFlag=false;
+loadBtn.onclick=function(){
+if(loadFlag) return;
+loadFlag=true;
+loadBtn.innerText="加载中...";
+setTimeout(()=>{
+let wrap=document.getElementById("productWrap");
+let html=`
+<div class="product">
+<div class="product-img-box">
+<img src="https://picsum.photos/500/300?13">
+</div>
+<h3>户外露营装备</h3>
+<div class="info">供应商：户外用品工厂<br>起订量：300件<br>支持混批</div>
+<div class="price">$32.50</div>
+<button onclick="detail()">查看详情</button>
+</div>
+<div class="product">
+<div class="product-img-box">
+<img src="https://picsum.photos/500/300?14">
+</div>
+<h3>母婴日用产品</h3>
+<div class="info">供应商：母婴认证工厂<br>起订量：200件<br>质检齐全</div>
+<div class="price">$21.80</div>
+<button onclick="detail()">查看详情</button>
+</div>
+`;
+wrap.insertAdjacentHTML("beforeend",html);
+loadBtn.innerText="已加载全部商品";
+loadBtn.disabled=true;
+loadFlag=false;
+},1200);
+}
+
+function filterProduct(){
+const min = document.getElementById("minPrice").value;
+const max = document.getElementById("maxPrice").value;
+const moq = document.getElementById("moqSelect").value;
+alert(`筛选条件：最低价${min||"不限"}，最高价${max||"不限"}，起订量${moq}`);
+location.href="products.html";
+}
+
+const mask=document.getElementById("inquiryMask");
+function openInquiry(){mask.style.display="flex";}
+function closeInquiry(){mask.style.display="none";}
+function submitInquiry(){
+alert("询价信息提交成功！我们将尽快联系您");
+closeInquiry();
+}
+mask.onclick=function(e){if(e.target===mask) closeInquiry();}
+
+const serviceMask=document.getElementById("serviceMask");
+function openService(){serviceMask.style.display="flex";}
+function closeService(){serviceMask.style.display="none";}
+function sendServiceMsg(){
+alert("咨询消息发送成功，客服会尽快回复！");
+closeService();
+}
+serviceMask.onclick=function(e){if(e.target===serviceMask) closeService();}
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>商品详情 - 嘻嘻嘻斯基</title>
 <style>
 *{
@@ -28,6 +911,7 @@ z-index:99;
 font-size:26px;
 font-weight:bold;
 color:#ff6600;
+cursor:pointer;
 }
 .back{
 color:#333;
@@ -71,6 +955,7 @@ font-size:16px;
 cursor:pointer;
 margin-right:15px;
 }
+.btn.gray{background:#666;}
 footer{
 background:#222;
 color:#fff;
@@ -90,7 +975,7 @@ padding:25px;
 </head>
 <body>
 <header>
-<div class="logo">嘻嘻嘻斯基</div>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
 <a class="back" href="index.html">← 返回首页</a>
 </header>
 <div class="container">
@@ -106,12 +991,318 @@ padding:25px;
 支持OEM/ODM定制<br>
 具备出口相关认证，适合跨境采购。
 </div>
-<button class="btn" onclick="alert('发起询价弹窗')">立即询价</button>
-<button class="btn" style="background:#666">收藏商品</button>
+<button class="btn" onclick="parent.openInquiry()">立即询价</button>
+<button class="btn gray" onclick="alert('收藏成功')">收藏商品</button>
 </div>
 </div>
 <footer>
 © 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
 </footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品导航 - 嘻嘻嘻斯基</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
+padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a:hover{color:#ff6600;}
+.container{padding:40px 8%;}
+.title{text-align:center;font-size:32px;margin-bottom:30px;}
+.filter{background:#fff;padding:20px;border-radius:10px;margin-bottom:25px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.filter input,.filter select{padding:8px;border:1px solid #ddd;border-radius:4px;}
+.btn{background:#ff6600;color:#fff;border:none;padding:8px 18px;border-radius:4px;cursor:pointer;}
+.product-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+.item{background:#fff;border-radius:10px;overflow:hidden;transition:0.3s;}
+.item:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.item img{width:100%;height:200px;object-fit:cover;}
+.item-text{padding:16px;}
+.item-text h3{margin-bottom:8px;font-size:18px;}
+.price{color:#ff6600;font-weight:bold;font-size:20px;margin:8px 0;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+@media(max-width:900px){.product-list{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.product-list{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html" style="color:#ff6600">商品导航</a>
+<a href="suppliers.html">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html">联系我们</a>
+</nav>
+</header>
+<div class="container">
+<h2 class="title">全部商品列表</h2>
+<div class="filter">
+<label>价格：</label>
+<input type="number" placeholder="最低">~<input type="number" placeholder="最高">
+<label>分类：</label>
+<select>
+<option>全部分类</option>
+<option>电子科技</option>
+<option>家居用品</option>
+<option>服装鞋包</option>
+</select>
+<button class="btn">筛选</button>
+</div>
+<div class="product-list">
+<div class="item" onclick="location.href='product-detail.html'">
+<img src="https://picsum.photos/500/300?10">
+<div class="item-text">
+<h3>智能蓝牙设备</h3>
+<div class="price">$19.99</div>
+<p>起订量：100件</p>
+</div>
+</div>
+<div class="item" onclick="location.href='product-detail.html'">
+<img src="https://picsum.photos/500/300?11">
+<div class="item-text">
+<h3>低GI健康食品</h3>
+<div class="price">$15.99</div>
+<p>起订量：500件</p>
+</div>
+</div>
+<div class="item" onclick="location.href='product-detail.html'">
+<img src="https://picsum.photos/500/300?12">
+<div class="item-text">
+<h3>智能家居产品</h3>
+<div class="price">$29.99</div>
+<p>起订量：200件</p>
+</div>
+</div>
+<div class="item" onclick="location.href='product-detail.html'">
+<img src="https://picsum.photos/500/300?13">
+<div class="item-text">
+<h3>户外露营装备</h3>
+<div class="price">$32.50</div>
+<p>起订量：300件</p>
+</div>
+</div>
+<div class="item" onclick="location.href='product-detail.html'">
+<img src="https://picsum.photos/500/300?14">
+<div class="item-text">
+<h3>母婴日用产品</h3>
+<div class="price">$21.80</div>
+<p>起订量：200件</p>
+</div>
+</div>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>供应商 - 嘻嘻嘻斯基</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
+padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a:hover{color:#ff6600;}
+.container{padding:40px 8%;}
+.title{text-align:center;font-size:32px;margin-bottom:30px;}
+.supplier-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+.supp-item{background:#fff;padding:22px;border-radius:10px;}
+.supp-item h3{margin-bottom:10px;color:#222;}
+.tag{display:inline-block;background:#ffe8d6;color:#ff6600;padding:3px 8px;border-radius:3px;font-size:13px;margin:3px;}
+.contact-btn{margin-top:14px;background:#ff6600;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+@media(max-width:900px){.supplier-list{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.supplier-list{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html" style="color:#ff6600">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html">联系我们</a>
+</nav>
+</header>
+<div class="container">
+<h2 class="title">合作供应商名录</h2>
+<div class="supplier-list">
+<div class="supp-item">
+<h3>深圳智能电子工厂</h3>
+<p>主营：蓝牙耳机、智能家居硬件</p>
+<div style="margin:8px 0;">
+<span class="tag">支持OEM</span>
+<span class="tag">出口资质</span>
+</div>
+<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
+</div>
+<div class="supp-item">
+<h3>健康食品生产基地</h3>
+<p>主营：代餐、低GI休闲食品</p>
+<div style="margin:8px 0;">
+<span class="tag">食品质检</span>
+<span class="tag">可混批</span>
+</div>
+<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
+</div>
+<div class="supp-item">
+<h3>户外用品制造有限公司</h3>
+<p>主营：露营装备、户外工具</p>
+<div style="margin:8px 0;">
+<span class="tag">定制印花</span>
+<span class="tag">跨境专供</span>
+</div>
+<button class="contact-btn" onclick="alert('打开询价')">发起对接</button>
+</div>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>采购服务 - 嘻嘻嘻斯基</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
+padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a:hover{color:#ff6600;}
+.container{padding:40px 8%;max-width:1200px;margin:0 auto;}
+.title{text-align:center;font-size:32px;margin-bottom:40px;}
+.service-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.service-card{background:#fff;padding:28px;border-radius:12px;text-align:center;}
+.service-card h3{font-size:20px;margin-bottom:12px;color:#ff6600;}
+.service-card p{color:#555;line-height:1.8;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+@media(max-width:900px){.service-wrap{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.service-wrap{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html">供应商</a>
+<a href="service.html" style="color:#ff6600">采购服务</a>
+<a href="contact.html">联系我们</a>
+</nav>
+</header>
+<div class="container">
+<h2 class="title">一站式全球采购服务</h2>
+<div class="service-wrap">
+<div class="service-card">
+<h3>工厂资源匹配</h3>
+<p>根据采购品类、预算、起订量快速匹配源头正规生产厂家，省去中间商差价。</p>
+</div>
+<div class="service-card">
+<h3>OEM/ODM定制</h3>
+<p>支持logo印刷、包装定制、产品改款，协助客户打造自有品牌商品。</p>
+</div>
+<div class="service-card">
+<h3>出口资质代办</h3>
+<p>对接报关、商检资料，协助跨境商家完成海外出口所需全套资质。</p>
+</div>
+<div class="service-card">
+<h3>样品协调</h3>
+<p>协调工厂寄送样品，跟进样品修改、确认，降低大批量采购风险。</p>
+</div>
+<div class="service-card">
+<h3>价格谈判协助</h3>
+<p>依托平台采购规模，协助采购商和工厂洽谈更有竞争力供货价格。</p>
+</div>
+<div class="service-card">
+<h3>订单跟进质检</h3>
+<p>生产进度跟踪，出货前抽检，减少残次品、延期交货问题。</p>
+</div>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
+</body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>联系我们 - 嘻嘻嘻斯基</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
+padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a:hover{color:#ff6600;}
+.container{padding:40px 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;}
+.title{text-align:center;font-size:32px;margin-bottom:30px;grid-column:1/-1;}
+.info-block{background:#fff;padding:30px;border-radius:12px;}
+.info-block h3{margin-bottom:20px;font-size:22px;}
+.info-block p{margin:12px 0;color:#444;line-height:1.7;}
+.form-block{background:#fff;padding:30px;border-radius:12px;}
+.form-block h3{margin-bottom:20px;font-size:22px;}
+.form-block input,.form-block textarea{width:100%;padding:12px;margin-bottom:14px;border:1px solid #ddd;border-radius:6px;outline:none;}
+.submit-btn{width:100%;padding:13px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;grid-column:1/-1;}
+@media(max-width:768px){.container{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html" style="color:#ff6600">联系我们</a>
+</nav>
+</header>
+<div class="container">
+<h2 class="title">联系我们</h2>
+<div class="info-block">
+<h3>联系方式</h3>
+<p>📞 业务热线：400-888-XXXX</p>
+<p>📧 商务邮箱：business@xixixisiji.com</p>
+<p>🕒 工作时间：周一至周六 9:00 - 18:00</p>
+<p>📍 办公地址：广东省深圳市龙华区</p>
+<br>
+<p>欢迎采购商、工厂洽谈入驻与合作！</p>
+</div>
+<div class="form-block">
+<h3>在线留言</h3>
+<input type="text" placeholder="您的姓名/公司">
+<input type="text" placeholder="联系电话">
+<textarea rows="5" placeholder="请输入您想咨询的内容"></textarea>
+<button class="submit-btn" onclick="alert('留言提交成功')">提交留言</button>
+</div>
+<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
+</div>
 </body>
 </html>
