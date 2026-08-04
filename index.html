@@ -573,47 +573,174 @@ gap:15px;
 🔥 全球采购季开启 | 支持OEM/ODM定制 | 50,000+供应商在线
 
 
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>产品中心 - 贸联商城</title>
+
+<style>
+
+body{
+font-family:"Microsoft YaHei";
+margin:0;
+background:#f5f6f8;
+}
 
 
+header{
+
+background:white;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+
+}
+
+
+.logo{
+
+font-size:28px;
+color:#ff6600;
+font-weight:bold;
+
+}
+
+
+a{
+
+margin:15px;
+text-decoration:none;
+color:#333;
+
+}
+
+
+
+.banner{
+
+height:300px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.5),
+rgba(0,0,0,.5)
+),
+url("https://picsum.photos/1600/500");
+
+
+background-size:cover;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+
+font-size:40px;
+
+}
+
+
+
+.products{
+
+padding:50px 8%;
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:25px;
+
+}
+
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+}
+
+
+
+.card img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+}
+
+
+.price{
+
+color:#ff6600;
+
+font-size:22px;
+
+}
+
+
+button{
+
+background:#ff6600;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
 
 
 <header>
 
-
 <div class="logo">
-
 嘻嘻嘻斯基
-
-<span>TradeLink</span>
-
 </div>
 
 
 <nav>
 
-<a href="index.html">首页</a>
+<a href="index.html">
+首页
+</a>
 
-<a href="products.html">产品中心</a>
+<a href="products.html">
+产品中心
+</a>
 
-<a href="suppliers.html">供应商</a>
+<a href="suppliers.html">
+供应商
+</a>
 
-<a href="service.html">采购服务</a>
+<a href="service.html">
+采购服务
+</a>
 
-<a href="contact.html">联系我们</a>
 
 </nav>
-
-
-</nav>
-
-
-
-<button class="btn">
-
-立即询价
-
-</button>
 
 
 </header>
@@ -621,356 +748,123 @@ gap:15px;
 
 
 
+<div class="banner">
 
-
-<section class="hero">
-
-
-<div class="hero-content">
-
-
-<h1>
-
-连接全球买家<br>
-
-寻找优质供应链
-
-</h1>
-
-
-
-<p>
-
-专业B2B采购平台<br>
-
-帮助企业快速找到可靠制造商
-
-</p>
-
-
-
-<div class="search">
-
-
-<input placeholder="搜索产品，例如：电子产品、食品、服装">
-
-
-<button onclick="searchProduct()">
-
-搜索
-
-</button>
-
+全部产品
 
 </div>
 
 
-
-<div class="data">
-
-
-<div>
-
-<strong>50000+</strong>
-
-供应商
-
-</div>
-
-
-<div>
-
-<strong>120+</strong>
-
-国家
-
-</div>
-
-
-<div>
-
-<strong>100万+</strong>
-
-产品
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="section">
-
-
-<h2 class="title">
-
-热门分类
-
-</h2>
-
-
-<div class="categories">
-
-
-<div class="category">
-
-📱
-
-<h3>电子产品</h3>
-
-<p>智能设备 配件</p>
-
-</div>
-
-
-<div class="category">
-
-👕
-
-
-<h3>服装鞋包</h3>
-
-<p>潮流服饰</p>
-
-</div>
-
-
-
-<div class="category">
-
-🍎
-
-<h3>食品饮料</h3>
-
-<p>健康食品</p>
-
-</div>
-
-
-
-<div class="category">
-
-🏠
-
-<h3>家居用品</h3>
-
-<p>生活用品</p>
-
-</div>
-
-
-
-<div class="category">
-
-⚙️
-
-<h3>机械设备</h3>
-
-<p>工业产品</p>
-
-</div>
-
-
-
-<div class="category">
-
-💄
-
-<h3>美容产品</h3>
-
-<p>护肤美妆</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section class="section product-area">
-
-
-<h2 class="title">
-
-精选商品
-
-</h2>
 
 
 <div class="products">
 
 
-<div class="product">
+<div class="card">
 
-<img src="https://picsum.photos/500/300?1">
+<img src="https://picsum.photos/300/200?1">
 
 <h3>
-智能蓝牙设备
+智能电子产品
 </h3>
 
 <p>
-厂家直供 支持批量采购
+厂家直供
 </p>
 
-
 <div class="price">
-
-$9.99
-
+$19.99
 </div>
 
-
-<button onclick="contact()">
-
-立即询价
-
+<button>
+询价
 </button>
 
-
 </div>
 
 
 
+<div class="card">
 
-<div class="product">
-
-
-<img src="https://picsum.photos/500/300?2">
-
+<img src="https://picsum.photos/300/200?2">
 
 <h3>
-
 健康食品
-
 </h3>
 
-
 <p>
-
-出口标准 全球配送
-
+出口认证
 </p>
 
-
 <div class="price">
-
-$15.99
-
+$12.99
 </div>
 
-
-<button onclick="contact()">
-
-立即询价
-
+<button>
+询价
 </button>
 
-
 </div>
 
 
 
+<div class="card">
 
-
-<div class="product">
-
-
-<img src="https://picsum.photos/500/300?3">
-
+<img src="https://picsum.photos/300/200?3">
 
 <h3>
-
-智能家居
-
+家居用品
 </h3>
 
-
 <p>
-
-支持OEM定制
-
+支持定制
 </p>
-
 
 <div class="price">
-
-$29.99
-
+$25.99
 </div>
 
-
-<button onclick="contact()">
-
-立即询价
-
+<button>
+询价
 </button>
 
 
 </div>
 
 
-</div>
 
 
-</section>
+<div class="card">
 
+<img src="https://picsum.photos/300/200?4">
 
-
-
-
-
-
-
-<section class="supplier">
-
-
-<h2>
-
-认证供应商服务
-
-</h2>
-
+<h3>
+美容产品
+</h3>
 
 <p>
-
-严格筛选工厂，为全球企业提供稳定供应链
-
+OEM生产
 </p>
 
+<div class="price">
+$8.99
+</div>
 
-<br>
-
-
-<button class="btn">
-
-查看供应商
-
+<button>
+询价
 </button>
 
 
-</section>
+</div>
 
 
 
+</div>
+
+
+</body>
+
+</html>
 
 
 
