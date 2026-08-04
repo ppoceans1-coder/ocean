@@ -7,9 +7,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>嘻嘻嘻斯基 全球供应链平台</title>
 
-<meta name="description" content="连接全球买家与优质供应商">
+<title>
+嘻嘻嘻斯基 - 商品导航
+</title>
+
 
 
 <style>
@@ -20,17 +22,15 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:
-"Microsoft YaHei",
-Arial;
+font-family:"Microsoft YaHei",Arial;
 
 }
 
 
 body{
 
-background:#f7f8fa;
-color:#222;
+background:#f5f6f8;
+color:#333;
 
 }
 
@@ -40,7 +40,7 @@ color:#222;
 
 height:40px;
 
-background:#fff4e8;
+background:#fff3e6;
 
 color:#ff6600;
 
@@ -56,9 +56,9 @@ font-size:14px;
 
 
 
+/*导航*/
 
 header{
-
 
 height:80px;
 
@@ -75,23 +75,15 @@ padding:0 8%;
 box-shadow:
 0 2px 15px rgba(0,0,0,.08);
 
-
-position:sticky;
-
-top:0;
-
-z-index:99;
-
 }
 
 
 
 .logo{
 
+font-size:30px;
 
-font-size:32px;
-
-font-weight:900;
+font-weight:bold;
 
 color:#ff6600;
 
@@ -101,21 +93,17 @@ color:#ff6600;
 
 .logo span{
 
-
-font-size:13px;
-
-color:#777;
-
 display:block;
 
-font-weight:normal;
+font-size:12px;
+
+color:#888;
 
 }
 
 
 
 nav a{
-
 
 text-decoration:none;
 
@@ -137,19 +125,15 @@ color:#ff6600;
 
 .btn{
 
-
 background:#ff6600;
-
-color:white;
 
 border:none;
 
-padding:14px 30px;
+color:white;
+
+padding:12px 25px;
 
 border-radius:6px;
-
-cursor:pointer;
-
 
 }
 
@@ -157,68 +141,78 @@ cursor:pointer;
 
 
 
-/* HERO */
-
-.hero{
+/*顶部banner*/
 
 
-height:620px;
+.banner{
+
+
+height:350px;
 
 
 background:
 
 linear-gradient(
-90deg,
-rgba(0,0,0,.65),
-rgba(0,0,0,.2)
+rgba(0,0,0,.5),
+rgba(0,0,0,.5)
 ),
 
 url(
-"https://picsum.photos/1600/900"
+"https://picsum.photos/1600/500"
 );
+
 
 
 background-size:cover;
 
 display:flex;
 
+justify-content:center;
+
 align-items:center;
 
-padding-left:8%;
 
 color:white;
 
-
-}
-
-
-
-.hero-content{
-
-max-width:750px;
-
-}
-
-
-
-.hero h1{
-
-
-font-size:60px;
-
-line-height:1.2;
+text-align:center;
 
 
 }
 
 
 
-.hero p{
+.banner h1{
+
+font-size:45px;
+
+}
 
 
-font-size:22px;
 
-margin:30px 0;
+.banner p{
+
+margin-top:20px;
+
+font-size:20px;
+
+}
+
+
+
+
+/*搜索*/
+
+
+.search-area{
+
+
+background:white;
+
+padding:30px 8%;
+
+display:flex;
+
+justify-content:center;
 
 }
 
@@ -227,11 +221,11 @@ margin:30px 0;
 .search{
 
 
-display:flex;
-
 width:650px;
 
-height:60px;
+height:55px;
+
+display:flex;
 
 }
 
@@ -239,31 +233,28 @@ height:60px;
 
 .search input{
 
-
 flex:1;
 
-padding:20px;
+border:1px solid #ddd;
 
-border:none;
+padding:0 20px;
 
 font-size:16px;
 
-
 }
+
 
 
 .search button{
 
 
-width:130px;
+width:120px;
 
 background:#ff6600;
 
-border:none;
-
 color:white;
 
-font-size:18px;
+border:none;
 
 
 }
@@ -271,62 +262,30 @@ font-size:18px;
 
 
 
+/*分类*/
 
-.stats{
 
+.container{
 
-display:flex;
-
-gap:60px;
-
-margin-top:40px;
-
+padding:60px 8%;
 
 }
 
-
-
-.stats strong{
-
-
-display:block;
-
-font-size:36px;
-
-color:#ffb36b;
-
-}
-
-
-
-
-/* 分类 */
-
-
-.section{
-
-
-padding:70px 8%;
-
-
-}
 
 
 .title{
 
-
 text-align:center;
 
-font-size:36px;
+font-size:35px;
 
-margin-bottom:40px;
-
+margin-bottom:35px;
 
 }
 
 
 
-.categories{
+.category{
 
 
 display:grid;
@@ -341,39 +300,36 @@ gap:20px;
 
 
 
-.category{
+.category div{
 
 
 background:white;
 
-padding:30px 10px;
+padding:25px;
 
 text-align:center;
 
-border-radius:12px;
-
-transition:.3s;
-
-
-}
-
-
-.category:hover{
-
-
-transform:translateY(-8px);
-
-box-shadow:
-0 10px 25px #ddd;
+border-radius:10px;
 
 
 }
 
 
 
+.category div:hover{
 
 
-/* 产品 */
+box-shadow:0 8px 20px #ddd;
+
+transform:translateY(-5px);
+
+}
+
+
+
+
+
+/*商品*/
 
 
 .products{
@@ -384,10 +340,12 @@ display:grid;
 grid-template-columns:
 repeat(3,1fr);
 
+
 gap:30px;
 
 
 }
+
 
 
 .product{
@@ -400,6 +358,19 @@ padding:20px;
 border-radius:12px;
 
 
+transition:.3s;
+
+
+}
+
+
+
+.product:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 10px 25px #ddd;
+
 }
 
 
@@ -409,7 +380,7 @@ border-radius:12px;
 
 width:100%;
 
-height:230px;
+height:220px;
 
 object-fit:cover;
 
@@ -422,9 +393,20 @@ border-radius:10px;
 
 .product h3{
 
+font-size:22px;
 
 margin:15px 0;
 
+
+}
+
+
+
+.info{
+
+color:#777;
+
+line-height:2;
 
 }
 
@@ -432,45 +414,61 @@ margin:15px 0;
 
 .price{
 
+color:#ff6600;
 
 font-size:25px;
 
 font-weight:bold;
 
-color:#ff6600;
+}
 
-margin:15px 0;
+
+
+.product button{
+
+
+margin-top:15px;
+
+background:#ff6600;
+
+color:white;
+
+border:none;
+
+padding:12px 30px;
+
+border-radius:5px;
+
+cursor:pointer;
+
 
 }
 
 
 
+/*供应商*/
 
 
-/* 供应链 */
-
-
-.supply{
+.factory{
 
 
 background:white;
 
+padding:50px;
+
 text-align:center;
 
-padding:70px;
+margin-top:50px;
 
 
 }
 
 
+.factory h2{
 
-.supply h2{
-
-
-font-size:36px;
+font-size:35px;
 
 margin-bottom:20px;
-
 
 }
 
@@ -481,14 +479,13 @@ margin-bottom:20px;
 footer{
 
 
-background:#111;
+background:#222;
 
 color:white;
 
-padding:35px;
+padding:30px;
 
 text-align:center;
-
 
 }
 
@@ -506,21 +503,8 @@ display:none;
 }
 
 
-.hero h1{
 
-font-size:35px;
-
-}
-
-
-.search{
-
-width:90%;
-
-}
-
-
-.categories{
+.category{
 
 grid-template-columns:
 repeat(2,1fr);
@@ -528,9 +512,18 @@ repeat(2,1fr);
 }
 
 
+
 .products{
 
 grid-template-columns:1fr;
+
+}
+
+
+
+.search{
+
+width:100%;
 
 }
 
@@ -546,16 +539,19 @@ grid-template-columns:1fr;
 
 
 
-
 <body>
+
 
 
 
 <div class="notice">
 
-全球采购季开启｜支持 OEM / ODM 定制｜50000+供应商
+🔥 嘻嘻嘻斯基采购节开启｜全球商品供应链平台
+
 
 </div>
+
+
 
 
 
@@ -564,10 +560,10 @@ grid-template-columns:1fr;
 
 <div class="logo">
 
-Linkora
+嘻嘻嘻斯基
 
 <span>
-Global Supply Chain
+Xixixisiji Global Supply
 </span>
 
 </div>
@@ -576,13 +572,14 @@ Global Supply Chain
 
 <nav>
 
+
 <a href="index.html">
 首页
 </a>
 
 
 <a href="products.html">
-产品中心
+商品导航
 </a>
 
 
@@ -607,10 +604,9 @@ Global Supply Chain
 
 <button class="btn">
 
-立即采购
+立即询价
 
 </button>
-
 
 
 </header>
@@ -621,37 +617,47 @@ Global Supply Chain
 
 
 
-<section class="hero">
+<section class="banner">
 
 
-<div class="hero-content">
+<div>
 
 
 <h1>
 
-连接全球买家<br>
-
-发现优质供应链
+嘻嘻嘻斯基商品导航
 
 </h1>
 
 
 <p>
 
-一站式B2B采购平台<br>
-
-帮助企业快速找到可靠制造商
+发现全球优质商品，一站式采购
 
 </p>
 
 
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<div class="search-area">
+
 
 <div class="search">
 
-<input placeholder="搜索产品，例如：电子产品、食品、服装">
+
+<input placeholder="搜索商品，例如：电子产品、食品、服装">
 
 
-<button onclick="search()">
+<button onclick="searchProduct()">
 
 搜索
 
@@ -661,137 +667,67 @@ Global Supply Chain
 </div>
 
 
-
-
-<div class="stats">
-
-
-<div>
-
-<strong>
-50000+
-</strong>
-
-供应商
-
-</div>
-
-
-<div>
-
-<strong>
-120+
-</strong>
-
-国家地区
-
 </div>
 
 
 
-<div>
-
-<strong>
-100万+
-</strong>
-
-商品
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
 
 
 
 
-
-
-
-<section class="section">
+<section class="container">
 
 
 <h2 class="title">
 
-热门采购分类
+商品分类
 
 </h2>
 
 
 
-<div class="categories">
-
-
 <div class="category">
 
+
+<div>
 📱
-
-<h3>
-电子产品
-</h3>
-
+<br>
+电子科技
 </div>
 
 
-<div class="category">
-
-👗
-
-<h3>
-服装
-</h3>
-
+<div>
+👕
+<br>
+服装鞋包
 </div>
 
 
-<div class="category">
-
+<div>
 🍎
-
-<h3>
-食品
-</h3>
-
+<br>
+食品饮料
 </div>
 
 
-<div class="category">
-
+<div>
 🏠
-
-<h3>
-家居
-</h3>
-
+<br>
+家居用品
 </div>
 
 
-<div class="category">
-
+<div>
 ⚙️
-
-<h3>
-工业
-</h3>
-
+<br>
+工业设备
 </div>
 
 
-<div class="category">
-
+<div>
 💄
-
-<h3>
-美妆
-</h3>
-
+<br>
+美容产品
 </div>
 
 
@@ -805,12 +741,15 @@ Global Supply Chain
 
 
 
-<section class="section">
+
+
+
+<section class="container">
 
 
 <h2 class="title">
 
-精选产品
+热门商品
 
 </h2>
 
@@ -819,73 +758,150 @@ Global Supply Chain
 <div class="products">
 
 
+
+
+
 <div class="product">
 
-<img src="https://picsum.photos/500/300?1">
+
+<img src="https://picsum.photos/500/300?10">
+
 
 <h3>
-智能设备
+智能蓝牙设备
 </h3>
 
-<p>
-厂家直供 支持批量采购
-</p>
+
+<div class="info">
+
+供应商：深圳科技厂家
+
+<br>
+
+起订量：100件
+
+<br>
+
+支持OEM/ODM
+
+</div>
+
 
 <div class="price">
+
 $19.99
+
 </div>
 
 
+<button onclick="detail()">
+
+查看详情
+
+</button>
+
+
+
 </div>
+
+
+
+
 
 
 
 <div class="product">
 
 
-<img src="https://picsum.photos/500/300?2">
+<img src="https://picsum.photos/500/300?11">
 
 
 <h3>
-健康食品
+低GI健康食品
 </h3>
 
 
-<p>
-出口标准 全球配送
-</p>
+<div class="info">
+
+供应商：食品生产厂家
+
+<br>
+
+起订量：500件
+
+<br>
+
+支持出口认证
+
+</div>
 
 
 <div class="price">
+
 $15.99
+
 </div>
 
 
+<button onclick="detail()">
+
+查看详情
+
+</button>
+
+
+
 </div>
+
+
+
+
 
 
 
 <div class="product">
 
-<img src="https://picsum.photos/500/300?3">
+
+<img src="https://picsum.photos/500/300?12">
 
 
 <h3>
-智能家居
+智能家居产品
 </h3>
 
 
-<p>
-支持OEM定制
-</p>
+<div class="info">
+
+供应商：认证工厂
+
+<br>
+
+起订量：200件
+
+<br>
+
+支持定制
+
+</div>
 
 
 <div class="price">
+
 $29.99
+
 </div>
 
 
+<button onclick="detail()">
+
+查看详情
+
+</button>
+
+
+
 </div>
+
 
 
 
@@ -898,19 +914,21 @@ $29.99
 
 
 
-<section class="supply">
+
+
+<section class="factory">
 
 
 <h2>
 
-可靠供应链服务
+全球供应商资源
 
 </h2>
 
 
 <p>
 
-认证工厂审核｜品质检测｜全球物流支持
+严格筛选厂家，为采购商提供稳定供应链服务
 
 </p>
 
@@ -920,7 +938,7 @@ $29.99
 
 <button class="btn">
 
-成为采购商
+寻找供应商
 
 </button>
 
@@ -931,27 +949,34 @@ $29.99
 
 
 
+
+
 <footer>
 
-© 2026 Linkora Global Supply Chain
+© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
 
 </footer>
+
+
+
+
+
 
 
 
 <script>
 
 
-function search(){
+function searchProduct(){
 
-let value=
+let key=
 document.querySelector(".search input").value;
 
 
-if(value){
+if(key){
 
 alert(
-"正在搜索："+value
+"正在搜索商品："+key
 );
 
 
@@ -959,11 +984,23 @@ alert(
 
 
 alert(
-"请输入产品关键词"
+"请输入商品名称"
 );
 
 
 }
+
+
+}
+
+
+
+
+function detail(){
+
+
+window.location.href=
+"product-detail.html";
 
 
 }
