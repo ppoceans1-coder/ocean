@@ -1,314 +1,754 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>嘻嘻嘻斯基</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-        ul {list-style: none;}
-        a {text-decoration: none;color: #333;}
 
-        /* 顶部通栏 */
-        .top-bar {
-            height: 32px;
-            background: #f5f5f5;
-            font-size: 12px;
-            color: #666;
-            line-height: 32px;
-        }
-        .wrap {
-            width: 1200px;
-            margin: 0 auto;
-        }
-        .top-left {float: left;}
-        .top-right {float: right;}
-        .top-right a {margin: 0 8px;color:#666;}
-        .top-right a:hover {color:#f40;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* 头部logo搜索 */
-        .header {
-            height: 110px;
-            padding-top: 20px;
-        }
-        .logo {
-            float: left;
-            width: 220px;
-            height: 70px;
-            line-height:70px;
-            font-size:30px;
-            font-weight:bold;
-            color:#f40;
-        }
-        .search-box {
-            float: left;
-            width: 620px;
-            margin-left: 40px;
-            margin-top:15px;
-        }
-        .search-input {
-            width: 520px;
-            height: 42px;
-            border: 2px solid #f40;
-            padding: 0 15px;
-            font-size:14px;
-            outline: none;
-        }
-        .search-btn {
-            width: 96px;
-            height: 42px;
-            background: #f40;
-            border: none;
-            color:#fff;
-            font-size:16px;
-            cursor: pointer;
-            vertical-align: middle;
-        }
-        .search-hot {
-            margin-top:8px;
-            font-size:12px;
-        }
-        .search-hot a {margin-right:12px;color:#999;}
-        .search-hot a:hover {color:#f40;}
+<title>嘻嘻嘻斯基</title>
 
-        /* 主导航 */
-        .nav {
-            height: 40px;
-            background: #f40;
-        }
-        .nav-left {
-            float: left;
-            width: 220px;
-            height:40px;
-            background:#c81623;
-            text-align:center;
-            line-height:40px;
-            color:#fff;
-            font-size:14px;
-        }
-        .nav-list {
-            float:left;
-        }
-        .nav-list li {
-            float:left;
-            line-height:40px;
-        }
-        .nav-list li a {
-            display:block;
-            padding:0 22px;
-            color:#fff;
-            font-size:14px;
-        }
-        .nav-list li a:hover {background:#c81623;}
+<style>
 
-        /* 横幅轮播区域 */
-        .banner-wrap {
-            height: 400px;
-            background:#eee;
-        }
-        .banner {
-            width: 980px;
-            height:400px;
-            float:left;
-            background:url("https://picsum.photos/id/1036/980/400") center/cover;
-        }
-        .side-category {
-            width:220px;
-            height:400px;
-            background:#fff;
-            float:left;
-        }
-        .side-category li {
-            height:36px;
-            line-height:36px;
-            padding-left:20px;
-            font-size:13px;
-        }
-        .side-category li:hover {
-            background:#f5f5f5;
-        }
-        .side-category li a:hover {color:#f40;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft YaHei",Arial;
+}
 
-        /* 商品区域 */
-        .goods-title {
-            margin:30px 0 15px;
-            font-size:20px;
-            border-left:4px solid #f40;
-            padding-left:10px;
-        }
-        .goods-list {
-            overflow:hidden;
-        }
-        .goods-item {
-            width:225px;
-            float:left;
-            margin-right:18px;
-            margin-bottom:20px;
-            border:1px solid #eee;
-            transition: 0.3s;
-        }
-        .goods-item:hover {
-            box-shadow: 0 2px 12px #ddd;
-        }
-        .goods-item img {
-            width:100%;
-            height:200px;
-            object-fit:cover;
-        }
-        .goods-name {
-            padding:8px;
-            font-size:14px;
-            height:40px;
-            overflow:hidden;
-        }
-        .goods-price {
-            padding:0 8px 10px;
-            color:#f40;
-            font-size:16px;
-            font-weight:bold;
-        }
+body{
+    background:#f5f6f8;
+    color:#333;
+}
 
-        /* 底部 */
-        .footer {
-            margin-top:40px;
-            padding:30px 0;
-            background:#f5f5f5;
-            text-align:center;
-            font-size:12px;
-            color:#666;
-        }
-        .clearfix::after{
-            content:"";
-            display:block;
-            clear:both;
-        }
-    </style>
+
+/* 顶部导航 */
+
+header{
+
+height:70px;
+background:white;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 8%;
+
+box-shadow:0 2px 8px #ddd;
+
+}
+
+
+.logo{
+
+font-size:28px;
+font-weight:bold;
+color:#ff6600;
+
+}
+
+
+nav a{
+
+margin:0 15px;
+text-decoration:none;
+color:#333;
+
+}
+
+
+.top-btn{
+
+background:#ff6600;
+color:white;
+
+padding:12px 25px;
+
+border-radius:5px;
+
+}
+
+
+
+/* 首页banner */
+
+.banner{
+
+
+height:520px;
+
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+
+url("https://picsum.photos/1600/700");
+
+
+background-size:cover;
+
+display:flex;
+
+align-items:center;
+
+padding-left:10%;
+
+color:white;
+
+
+}
+
+
+
+.banner h1{
+
+font-size:52px;
+
+}
+
+
+.banner p{
+
+font-size:22px;
+
+margin:25px 0;
+
+}
+
+
+
+.search{
+
+
+display:flex;
+
+}
+
+
+
+.search input{
+
+
+width:500px;
+
+padding:18px;
+
+border:none;
+
+font-size:16px;
+
+}
+
+
+
+.search button{
+
+background:#ff6600;
+
+border:none;
+
+color:white;
+
+padding:0 35px;
+
+font-size:18px;
+
+}
+
+
+
+
+
+/* 分类 */
+
+
+.container{
+
+padding:50px 8%;
+
+}
+
+
+
+.title{
+
+text-align:center;
+
+font-size:32px;
+
+margin-bottom:40px;
+
+}
+
+
+
+.categories{
+
+
+display:grid;
+
+grid-template-columns:repeat(6,1fr);
+
+gap:20px;
+
+
+}
+
+
+.category{
+
+
+background:white;
+
+padding:30px 10px;
+
+text-align:center;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+
+}
+
+
+.category:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 5px 15px #ddd;
+
+}
+
+
+
+
+
+/* 产品 */
+
+.products{
+
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+
+}
+
+
+
+.product{
+
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+
+}
+
+
+
+.product img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:8px;
+
+
+}
+
+
+
+.product h3{
+
+margin:15px 0;
+
+}
+
+
+.price{
+
+color:#ff6600;
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+
+.product button{
+
+
+margin-top:15px;
+
+background:#ff6600;
+
+border:none;
+
+color:white;
+
+padding:12px 25px;
+
+border-radius:5px;
+
+
+}
+
+
+
+
+
+/* 供应商 */
+
+
+.supplier{
+
+
+background:white;
+
+padding:60px;
+
+text-align:center;
+
+
+}
+
+
+
+.supplier button{
+
+
+margin-top:25px;
+
+background:#ff6600;
+
+color:white;
+
+border:none;
+
+padding:15px 40px;
+
+border-radius:5px;
+
+
+}
+
+
+
+/* 页脚 */
+
+
+footer{
+
+
+background:#222;
+
+color:white;
+
+text-align:center;
+
+padding:30px;
+
+
+}
+
+
+
+
+/* 手机适配 */
+
+@media(max-width:768px){
+
+
+nav{
+
+display:none;
+
+}
+
+
+.banner h1{
+
+font-size:32px;
+
+}
+
+
+.search input{
+
+width:220px;
+
+}
+
+
+
+.categories{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+
+.products{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+</style>
+
+
 </head>
+
+
+
 <body>
-    <!-- 顶部通栏 -->
-    <div class="top-bar">
-        <div class="wrap clearfix">
-            <div class="top-left">欢迎来到阿里巴巴批发采购平台！</div>
-            <div class="top-right">
-                <a href="#">请登录</a>
-                <a href="#">免费注册</a>
-                <a href="#">我的订单</a>
-                <a href="#">进货单</a>
-                <a href="#">商家入驻</a>
-                <a href="#">客户服务</a>
-            </div>
-        </div>
-    </div>
 
-    <!-- 头部Logo+搜索 -->
-    <div class="header wrap clearfix">
-        <div class="logo">Alibaba 1688</div>
-        <div class="search-box">
-            <input class="search-input" placeholder="输入商品、厂家、货源">
-            <button class="search-btn">搜索</button>
-            <div class="search-hot">
-                <a href="#">女装</a>
-                <a href="#">五金工具</a>
-                <a href="#">家居用品</a>
-                <a href="#">电子产品</a>
-                <a href="#">箱包</a>
-            </div>
-        </div>
-    </div>
 
-    <!-- 主导航栏 -->
-    <div class="nav">
-        <div class="wrap clearfix">
-            <div class="nav-left">全部商品分类</div>
-            <ul class="nav-list">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">服装服饰</a></li>
-                <li><a href="#">家居百货</a></li>
-                <li><a href="#">数码家电</a></li>
-                <li><a href="#">美妆护肤</a></li>
-                <li><a href="#">母婴用品</a></li>
-                <li><a href="#">机械工业</a></li>
-            </ul>
-        </div>
-    </div>
+<header>
 
-    <!-- 轮播+侧边类目 -->
-    <div class="banner-wrap wrap clearfix">
-        <ul class="side-category">
-            <li><a href="#">女装、男装</a></li>
-            <li><a href="#">鞋靴、箱包</a></li>
-            <li><a href="#">家居、家纺</a></li>
-            <li><a href="#">厨房用品</a></li>
-            <li><a href="#">手机数码</a></li>
-            <li><a href="#">电脑办公</a></li>
-            <li><a href="#">玩具礼品</a></li>
-            <li><a href="#">五金工具</a></li>
-            <li><a href="#">包装印刷</a></li>
-            <li><a href="#">机械设备</a></li>
-        </ul>
-        <div class="banner"></div>
-    </div>
 
-    <!-- 商品推荐区域 -->
-    <div class="wrap">
-        <h3 class="goods-title">热销货源推荐</h3>
-        <div class="goods-list clearfix">
-            <div class="goods-item">
-                <img src="https://picsum.photos/id/1060/225/200">
-                <div class="goods-name">夏季新款纯棉短袖T恤 厂家批量现货</div>
-                <div class="goods-price">¥9.8/件起批</div>
-            </div>
-            <div class="goods-item">
-                <img src="https://picsum.photos/id/1059/225/200">
-                <div class="goods-name">家用收纳箱 塑料储物整理箱多规格</div>
-                <div class="goods-price">¥6.5/个起批</div>
-            </div>
-            <div class="goods-item">
-                <img src="https://picsum.photos/id/1048/225/200">
-                <div class="goods-name">蓝牙无线耳机 超长续航降噪耳机</div>
-                <div class="goods-price">¥22.0/副起批</div>
-            </div>
-            <div class="goods-item">
-                <img src="https://picsum.photos/id/1040/225/200">
-                <div class="goods-name">网红玻璃杯 简约大容量水杯礼品定制</div>
-                <div class="goods-price">¥3.2/个起批</div>
-            </div>
-            <div class="goods-item">
-                <img src="https://picsum.photos/id/1062/225/200">
-                <div class="goods-name">儿童卡通玩具 地摊货源批发多款可选</div>
-                <div class="goods-price">¥2.8/件起批</div>
-            </div>
-        </div>
-    </div>
+<div class="logo">
 
-    <!-- 底部 -->
-    <div class="footer">
-        <div class="wrap">
-            <p>© 2025 阿里巴巴批发平台 前端演示页面 | 仅学习使用，非官方网站</p>
-            <p style="margin-top:8px;">工商信息 | 隐私政策 | 用户协议 | 商家入驻</p>
-        </div>
-    </div>
+贸联商城
 
-    <script>
-        //简单搜索点击效果
-        const btn = document.querySelector('.search-btn');
-        const input = document.querySelector('.search-input');
-        btn.onclick = function(){
-            let keyword = input.value.trim();
-            if(keyword){
-                alert("正在搜索：" + keyword);
-            }else{
-                alert("请输入搜索关键词");
-            }
-        }
-        input.onkeydown = function(e){
-            if(e.key === 'Enter') btn.click();
-        }
-    </script>
+</div>
+
+
+<nav>
+
+<a href="#">首页</a>
+
+<a href="#">产品</a>
+
+<a href="#">供应商</a>
+
+<a href="#">采购中心</a>
+
+<a href="#">联系我们</a>
+
+
+</nav>
+
+
+<div class="top-btn">
+
+发布询盘
+
+</div>
+
+
+</header>
+
+
+
+
+
+<section class="banner">
+
+
+<div>
+
+
+<h1>
+
+连接全球优质供应链
+
+</h1>
+
+
+<p>
+
+专业B2B采购平台，帮助企业寻找可靠供应商
+
+</p>
+
+
+
+<div class="search">
+
+
+<input placeholder="搜索产品，例如：电子产品、食品、服装">
+
+
+<button>
+
+搜索
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="container">
+
+
+<h2 class="title">
+
+热门分类
+
+</h2>
+
+
+<div class="categories">
+
+
+<div class="category">
+电子产品
+</div>
+
+
+<div class="category">
+服装鞋包
+</div>
+
+
+<div class="category">
+食品饮料
+</div>
+
+
+<div class="category">
+家居用品
+</div>
+
+
+<div class="category">
+机械设备
+</div>
+
+
+<div class="category">
+美容用品
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="container">
+
+
+<h2 class="title">
+
+热门商品
+
+</h2>
+
+
+<div class="products">
+
+
+<div class="product">
+
+
+<img src="https://picsum.photos/500/300?1">
+
+
+<h3>
+智能电子设备
+</h3>
+
+
+<p>
+厂家直供 支持批量采购
+</p>
+
+
+<div class="price">
+
+$9.99
+
+</div>
+
+
+<button>
+立即询价
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="product">
+
+
+<img src="https://picsum.photos/500/300?2">
+
+
+<h3>
+健康食品系列
+</h3>
+
+
+<p>
+出口品质 全球配送
+</p>
+
+
+<div class="price">
+
+$15.99
+
+</div>
+
+
+<button>
+立即询价
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="product">
+
+
+<img src="https://picsum.photos/500/300?3">
+
+
+<h3>
+智能家居产品
+</h3>
+
+
+<p>
+支持OEM定制
+</p>
+
+
+<div class="price">
+
+$25.99
+
+</div>
+
+
+<button>
+立即询价
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section class="supplier">
+
+
+<h2>
+
+认证供应商服务
+
+</h2>
+
+
+<p>
+
+严格筛选工厂，为全球买家提供稳定供应链
+
+</p>
+
+
+<button>
+
+查看供应商
+
+</button>
+
+
+</section>
+
+
+
+
+
+<footer>
+
+
+© 2026 贸联商城 Global Trade Platform
+
+
+</footer>
+
+
+
+
+<script>
+
+
+document.querySelectorAll("button")
+.forEach(function(btn){
+
+btn.onclick=function(){
+
+alert("感谢您的咨询，我们会尽快联系您！");
+
+}
+
+});
+
+
+</script>
+
+
+
 </body>
+
 </html>
