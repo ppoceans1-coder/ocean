@@ -1,1016 +1,431 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-<title>
-嘻嘻嘻斯基 - 商品导航
-</title>
-
-
-
+<title>嘻嘻嘻斯基 - 商品导航</title>
 <style>
-
-
 *{
-
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:"Microsoft YaHei",Arial;
-
+font-family:"Microsoft YaHei",Arial,sans-serif;
 }
-
-
 body{
-
 background:#f5f6f8;
 color:#333;
-
+line-height:1.6;
 }
-
-
-
 .notice{
-
 height:40px;
-
 background:#fff3e6;
-
 color:#ff6600;
-
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
 font-size:14px;
-
 }
-
-
-
 /*导航*/
-
 header{
-
 height:80px;
-
 background:white;
-
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 padding:0 8%;
-
-box-shadow:
-0 2px 15px rgba(0,0,0,.08);
-
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:999;
 }
-
-
-
 .logo{
-
 font-size:30px;
-
 font-weight:bold;
-
 color:#ff6600;
-
+line-height:1.2;
 }
-
-
-
 .logo span{
-
 display:block;
-
 font-size:12px;
-
 color:#888;
-
+font-weight:normal;
+margin-top:4px;
 }
-
-
-
 nav a{
-
 text-decoration:none;
-
 color:#333;
-
 margin:0 15px;
-
+font-size:15px;
+transition:color 0.3s;
 }
-
-
-
 nav a:hover{
-
 color:#ff6600;
-
 }
-
-
-
 .btn{
-
 background:#ff6600;
-
 border:none;
-
 color:white;
-
 padding:12px 25px;
-
 border-radius:6px;
-
-}
-
-
-
-
-
-/*顶部banner*/
-
-
-.banner{
-
-
-height:350px;
-
-
-background:
-
-linear-gradient(
-rgba(0,0,0,.5),
-rgba(0,0,0,.5)
-),
-
-url(
-"https://picsum.photos/1600/500"
-);
-
-
-
-background-size:cover;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-
-color:white;
-
-text-align:center;
-
-
-}
-
-
-
-.banner h1{
-
-font-size:45px;
-
-}
-
-
-
-.banner p{
-
-margin-top:20px;
-
-font-size:20px;
-
-}
-
-
-
-
-/*搜索*/
-
-
-.search-area{
-
-
-background:white;
-
-padding:30px 8%;
-
-display:flex;
-
-justify-content:center;
-
-}
-
-
-
-.search{
-
-
-width:650px;
-
-height:55px;
-
-display:flex;
-
-}
-
-
-
-.search input{
-
-flex:1;
-
-border:1px solid #ddd;
-
-padding:0 20px;
-
-font-size:16px;
-
-}
-
-
-
-.search button{
-
-
-width:120px;
-
-background:#ff6600;
-
-color:white;
-
-border:none;
-
-
-}
-
-
-
-
-/*分类*/
-
-
-.container{
-
-padding:60px 8%;
-
-}
-
-
-
-.title{
-
-text-align:center;
-
-font-size:35px;
-
-margin-bottom:35px;
-
-}
-
-
-
-.category{
-
-
-display:grid;
-
-grid-template-columns:
-repeat(6,1fr);
-
-gap:20px;
-
-
-}
-
-
-
-.category div{
-
-
-background:white;
-
-padding:25px;
-
-text-align:center;
-
-border-radius:10px;
-
-
-}
-
-
-
-.category div:hover{
-
-
-box-shadow:0 8px 20px #ddd;
-
-transform:translateY(-5px);
-
-}
-
-
-
-
-
-/*商品*/
-
-
-.products{
-
-
-display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-
-gap:30px;
-
-
-}
-
-
-
-.product{
-
-
-background:white;
-
-padding:20px;
-
-border-radius:12px;
-
-
-transition:.3s;
-
-
-}
-
-
-
-.product:hover{
-
-transform:translateY(-8px);
-
-box-shadow:0 10px 25px #ddd;
-
-}
-
-
-
-.product img{
-
-
-width:100%;
-
-height:220px;
-
-object-fit:cover;
-
-border-radius:10px;
-
-
-}
-
-
-
-.product h3{
-
-font-size:22px;
-
-margin:15px 0;
-
-
-}
-
-
-
-.info{
-
-color:#777;
-
-line-height:2;
-
-}
-
-
-
-.price{
-
-color:#ff6600;
-
-font-size:25px;
-
-font-weight:bold;
-
-}
-
-
-
-.product button{
-
-
-margin-top:15px;
-
-background:#ff6600;
-
-color:white;
-
-border:none;
-
-padding:12px 30px;
-
-border-radius:5px;
-
 cursor:pointer;
-
-
+font-size:15px;
+transition:background 0.3s;
 }
-
-
-
-/*供应商*/
-
-
-.factory{
-
-
-background:white;
-
-padding:50px;
-
-text-align:center;
-
-margin-top:50px;
-
-
+.btn:hover{
+background:#e55a00;
 }
-
-
-.factory h2{
-
-font-size:35px;
-
-margin-bottom:20px;
-
-}
-
-
-
-
-
-footer{
-
-
-background:#222;
-
-color:white;
-
-padding:30px;
-
-text-align:center;
-
-}
-
-
-
-
-
-@media(max-width:900px){
-
-
-nav{
-
+/*移动端汉堡菜单*/
+.menu-btn{
 display:none;
-
+font-size:26px;
+color:#333;
+cursor:pointer;
 }
-
-
-
-.category{
-
-grid-template-columns:
-repeat(2,1fr);
-
+/*顶部banner*/
+.banner{
+height:350px;
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://picsum.photos/1600/500");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
 }
-
-
-
-.products{
-
-grid-template-columns:1fr;
-
+.banner h1{
+font-size:45px;
+margin-bottom:10px;
 }
-
-
-
+.banner p{
+margin-top:20px;
+font-size:20px;
+opacity:0.9;
+}
+/*搜索*/
+.search-area{
+background:white;
+padding:30px 8%;
+display:flex;
+justify-content:center;
+}
 .search{
-
+width:650px;
+height:55px;
+display:flex;
+}
+.search input{
+flex:1;
+border:1px solid #ddd;
+padding:0 20px;
+font-size:16px;
+outline:none;
+border-right:none;
+border-radius:6px 0 0 6px;
+}
+.search input:focus{
+border-color:#ff6600;
+}
+.search button{
+width:120px;
+background:#ff6600;
+color:white;
+border:none;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+font-size:16px;
+transition:background 0.3s;
+}
+.search button:hover{
+background:#e55a00;
+}
+/*分类*/
+.container{
+padding:60px 8%;
+}
+.title{
+text-align:center;
+font-size:35px;
+margin-bottom:35px;
+color:#222;
+}
+.category{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:20px;
+}
+.category div{
+background:white;
+padding:25px 10px;
+text-align:center;
+border-radius:10px;
+transition:all 0.3s ease;
+font-size:15px;
+cursor:pointer;
+}
+.category div:hover{
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+transform:translateY(-5px);
+color:#ff6600;
+}
+/*商品*/
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+.product{
+background:white;
+padding:20px;
+border-radius:12px;
+transition:.3s ease;
+overflow:hidden;
+}
+.product:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+.product img{
 width:100%;
-
+height:220px;
+object-fit:cover;
+border-radius:10px;
 }
-
-
+.product h3{
+font-size:22px;
+margin:15px 0;
+font-weight:600;
 }
-
-
-
+.info{
+color:#777;
+line-height:2;
+font-size:14px;
+margin-bottom:10px;
+}
+.price{
+color:#ff6600;
+font-size:25px;
+font-weight:bold;
+margin:10px 0;
+}
+.product button{
+margin-top:15px;
+background:#ff6600;
+color:white;
+border:none;
+padding:12px 30px;
+border-radius:5px;
+cursor:pointer;
+transition:background 0.3s;
+width:100%;
+}
+.product button:hover{
+background:#e55a00;
+}
+/*供应商*/
+.factory{
+background:white;
+padding:50px;
+text-align:center;
+margin-top:50px;
+border-radius:12px;
+}
+.factory h2{
+font-size:35px;
+margin-bottom:20px;
+}
+.factory p{
+color:#666;
+font-size:16px;
+margin-bottom:20px;
+}
+footer{
+background:#222;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:40px;
+font-size:14px;
+}
+/*响应式适配*/
+@media(max-width:900px){
+nav{
+display:none;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:#fff;
+flex-direction:column;
+padding:20px 0;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+nav.active{
+display:flex;
+}
+nav a{
+margin:10px 0;
+text-align:center;
+}
+.menu-btn{
+display:block;
+}
+.category{
+grid-template-columns:repeat(2,1fr);
+}
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+.search{
+width:100%;
+}
+.banner h1{
+font-size:32px;
+}
+.banner p{
+font-size:16px;
+}
+.title{
+font-size:28px;
+}
+}
+@media(max-width:500px){
+.products{
+grid-template-columns:1fr;
+}
+.category{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+header{
+padding:0 5%;
+}
+.container{
+padding:40px 5%;
+}
+.factory{
+padding:30px 20px;
+}
+}
 </style>
-
-
 </head>
-
-
-
 <body>
-
-
-
-
 <div class="notice">
-
 🔥 嘻嘻嘻斯基采购节开启｜全球商品供应链平台
-
-
 </div>
-
-
-
-
-
 <header>
-
-
 <div class="logo">
-
 嘻嘻嘻斯基
-
-<span>
-Xixixisiji Global Supply
-</span>
-
+<span>Xixixisiji Global Supply</span>
 </div>
-
-
-
-<nav>
-
-
-<a href="index.html">
-首页
-</a>
-
-
-<a href="products.html">
-商品导航
-</a>
-
-
-<a href="suppliers.html">
-供应商
-</a>
-
-
-<a href="service.html">
-采购服务
-</a>
-
-
-<a href="contact.html">
-联系我们
-</a>
-
-
+<div class="menu-btn" id="menuBtn">☰</div>
+<nav id="navBox">
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html">联系我们</a>
 </nav>
-
-
-
-<button class="btn">
-
-立即询价
-
-</button>
-
-
+<button class="btn">立即询价</button>
 </header>
-
-
-
-
-
-
-
 <section class="banner">
-
-
 <div>
-
-
-<h1>
-
-嘻嘻嘻斯基商品导航
-
-</h1>
-
-
-<p>
-
-发现全球优质商品，一站式采购
-
-</p>
-
-
+<h1>嘻嘻嘻斯基商品导航</h1>
+<p>发现全球优质商品，一站式采购</p>
 </div>
-
-
 </section>
-
-
-
-
-
-
-
 <div class="search-area">
-
-
 <div class="search">
-
-
-<input placeholder="搜索商品，例如：电子产品、食品、服装">
-
-
-<button onclick="searchProduct()">
-
-搜索
-
-</button>
-
-
+<input placeholder="搜索商品，例如：电子产品、食品、服装" id="searchInput">
+<button onclick="searchProduct()">搜索</button>
 </div>
-
-
 </div>
-
-
-
-
-
-
-
 <section class="container">
-
-
-<h2 class="title">
-
-商品分类
-
-</h2>
-
-
-
+<h2 class="title">商品分类</h2>
 <div class="category">
-
-
-<div>
-📱
-<br>
-电子科技
+<div>📱<br>电子科技</div>
+<div>👕<br>服装鞋包</div>
+<div>🍎<br>食品饮料</div>
+<div>🏠<br>家居用品</div>
+<div>⚙️<br>工业设备</div>
+<div>💄<br>美容产品</div>
 </div>
-
-
-<div>
-👕
-<br>
-服装鞋包
-</div>
-
-
-<div>
-🍎
-<br>
-食品饮料
-</div>
-
-
-<div>
-🏠
-<br>
-家居用品
-</div>
-
-
-<div>
-⚙️
-<br>
-工业设备
-</div>
-
-
-<div>
-💄
-<br>
-美容产品
-</div>
-
-
-</div>
-
-
 </section>
-
-
-
-
-
-
-
-
-
 <section class="container">
-
-
-<h2 class="title">
-
-热门商品
-
-</h2>
-
-
-
+<h2 class="title">热门商品</h2>
 <div class="products">
-
-
-
-
-
 <div class="product">
-
-
 <img src="https://picsum.photos/500/300?10">
-
-
-<h3>
-智能蓝牙设备
-</h3>
-
-
+<h3>智能蓝牙设备</h3>
 <div class="info">
-
-供应商：深圳科技厂家
-
-<br>
-
-起订量：100件
-
-<br>
-
+供应商：深圳科技厂家<br>
+起订量：100件<br>
 支持OEM/ODM
-
 </div>
-
-
-<div class="price">
-
-$19.99
-
+<div class="price">$19.99</div>
+<button onclick="detail()">查看详情</button>
 </div>
-
-
-<button onclick="detail()">
-
-查看详情
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
 <div class="product">
-
-
 <img src="https://picsum.photos/500/300?11">
-
-
-<h3>
-低GI健康食品
-</h3>
-
-
+<h3>低GI健康食品</h3>
 <div class="info">
-
-供应商：食品生产厂家
-
-<br>
-
-起订量：500件
-
-<br>
-
+供应商：食品生产厂家<br>
+起订量：500件<br>
 支持出口认证
-
 </div>
-
-
-<div class="price">
-
-$15.99
-
+<div class="price">$15.99</div>
+<button onclick="detail()">查看详情</button>
 </div>
-
-
-<button onclick="detail()">
-
-查看详情
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
 <div class="product">
-
-
 <img src="https://picsum.photos/500/300?12">
-
-
-<h3>
-智能家居产品
-</h3>
-
-
+<h3>智能家居产品</h3>
 <div class="info">
-
-供应商：认证工厂
-
-<br>
-
-起订量：200件
-
-<br>
-
+供应商：认证工厂<br>
+起订量：200件<br>
 支持定制
-
 </div>
-
-
-<div class="price">
-
-$29.99
-
+<div class="price">$29.99</div>
+<button onclick="detail()">查看详情</button>
 </div>
-
-
-<button onclick="detail()">
-
-查看详情
-
-</button>
-
-
-
 </div>
-
-
-
-
-</div>
-
-
 </section>
-
-
-
-
-
-
-
 <section class="factory">
-
-
-<h2>
-
-全球供应商资源
-
-</h2>
-
-
-<p>
-
-严格筛选厂家，为采购商提供稳定供应链服务
-
-</p>
-
-
+<h2>全球供应商资源</h2>
+<p>严格筛选厂家，为采购商提供稳定供应链服务</p>
 <br>
-
-
-<button class="btn">
-
-寻找供应商
-
-</button>
-
-
+<button class="btn">寻找供应商</button>
 </section>
-
-
-
-
-
-
-
 <footer>
-
 © 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
-
 </footer>
-
-
-
-
-
-
-
-
 <script>
+// 移动端菜单切换
+const menuBtn = document.getElementById('menuBtn');
+const navBox = document.getElementById('navBox');
+menuBtn.addEventListener('click',()=>{
+navBox.classList.toggle('active');
+});
 
-
+// 搜索功能
 function searchProduct(){
-
-let key=
-document.querySelector(".search input").value;
-
-
+let key=document.querySelector("#searchInput").value.trim();
 if(key){
-
-alert(
-"正在搜索商品："+key
-);
-
-
+alert("正在搜索商品："+key);
+document.getElementById("searchInput").value = "";
 }else{
-
-
-alert(
-"请输入商品名称"
-);
-
-
+alert("请输入商品名称");
 }
-
-
 }
-
-
-
-
+// 商品详情跳转
 function detail(){
-
-
-window.location.href=
-"product-detail.html";
-
-
+window.location.href="product-detail.html";
 }
-
-
-
+//点击页面其他区域关闭菜单
+document.addEventListener('click',function(e){
+if(!header.contains(e.target)){
+navBox.classList.remove('active');
+}
+})
 </script>
-
-
-
 </body>
-
 </html>
