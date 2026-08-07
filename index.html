@@ -8,6 +8,9 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif;}
 body{background:#f5f6f8;color:#333;line-height:1.6;}
 
+/* 顶部公告栏 */
+.top-announcement{background:#ff6600;color:#fff;text-align:center;font-size:13px;padding:6px 10px;overflow:hidden;white-space:nowrap;}
+
 /* 头部公共导航 */
 header{
   height:70px;background:#fff;display:flex;align-items:center;justify-content:space-between;
@@ -19,10 +22,11 @@ nav a{text-decoration:none;color:#333;margin:0 12px;font-size:15px;cursor:pointe
 nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 .badge{background:#ff6600;color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:3px;vertical-align:top;}
 .header-btns{display:flex;gap:10px;}
-.btn{background:#ff6600;color:#fff;border:none;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn{background:#ff6600;color:#fff;border:none;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:14px;transition:0.2s;}
+.btn:hover{opacity:0.9;}
 .btn-secondary{background:#0088ff;}
 .btn-outline{background:#fff;border:1px solid #ff6600;color:#ff6600;}
-.btn-danger{background:#e6a23c;}
+.btn-outline:hover{background:#fff7f2;}
 
 /* 页面视图容器控制 */
 .page-view{display:none;padding-bottom:60px;}
@@ -31,6 +35,15 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 /* 通用容器 */
 .container{padding:30px 8%;max-width:1200px;margin:0 auto;}
 .title{text-align:center;font-size:28px;margin-bottom:25px;}
+
+/* 搜索栏与分类标签样式 */
+.search-filter-box{display:flex;flex-direction:column;align-items:center;margin-bottom:25px;gap:15px;}
+.search-bar{display:flex;width:100%;max-width:600px;justify-content:center;}
+.search-bar input{flex:1;padding:10px 15px;border:1px solid #ddd;border-radius:4px 0 0 4px;outline:none;font-size:14px;}
+.search-bar button{border-radius:0 4px 4px 0;padding:0 20px;}
+.filter-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.tag-btn{background:#fff;border:1px solid #ddd;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:13px;transition:0.2s;}
+.tag-btn.active, .tag-btn:hover{background:#ff6600;color:#fff;border-color:#ff6600;}
 
 /* 1. 首页样式 */
 .banner{background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://picsum.photos/1200/400?20');background-size:cover;height:300px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
@@ -47,7 +60,7 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 
 /* 2. 商品详情页样式 */
 .detail-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;background:#fff;padding:30px;border-radius:12px;margin-top:20px;}
-.detail-img img{width:100%;border-radius:8px;}
+.detail-img img{width:100%;border-radius:8px;object-fit:cover;height:350px;}
 .price-box{background:#fff7f2;padding:15px;border-radius:8px;margin:15px 0;}
 
 /* 3. 购物车列表表格样式 */
@@ -73,6 +86,11 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 .pay-card{border:2px solid #ddd;padding:15px;border-radius:6px;text-align:center;cursor:pointer;}
 .pay-card.active{border-color:#ff6600;background:#fff7f2;}
 
+/* Toast 提示浮窗样式 */
+#toast-container{position:fixed;top:80px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;}
+.toast{background:#333;color:#fff;padding:12px 20px;border-radius:6px;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.15);animation:fadeInOut 2.5s ease forwards;}
+@keyframes fadeInOut{0%{opacity:0;transform:translateY(-10px);}15%{opacity:1;transform:translateY(0);}85%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-10px);}}
+
 /* 页脚样式 */
 footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 .footer-container{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:30px;border-bottom:1px solid #3e4451;}
@@ -91,6 +109,14 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 </style>
 </head>
 <body>
+
+<!-- 顶部公告栏 -->
+<div class="top-announcement">
+  🔥 欢迎来到奇创芯智全球供应链平台！支持全球一件代发、OEM/ODM 定制，大宗采购专享阶梯优惠！
+</div>
+
+<!-- 全局提示容器 -->
+<div id="toast-container"></div>
 
 <header>
   <div class="logo" onclick="switchPage('home')">奇创芯智有限公司 <span>Curious Creative Core Smart Group</span></div>
@@ -116,12 +142,12 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
   <div class="container">
     <h2 class="title">热门采购分类</h2>
     <div class="category-grid">
-      <div class="category-card" onclick="switchPage('products')">📱<br>电子科技</div>
-      <div class="category-card" onclick="switchPage('products')">👕<br>服装鞋包</div>
-      <div class="category-card" onclick="switchPage('products')">🍎<br>食品饮料</div>
-      <div class="category-card" onclick="switchPage('products')">🏠<br>家居用品</div>
-      <div class="category-card" onclick="switchPage('products')">⛺<br>户外装备</div>
-      <div class="category-card" onclick="switchPage('products')">🍼<br>母婴用品</div>
+      <div class="category-card" onclick="filterByCategory('electronics')">📱<br>电子科技</div>
+      <div class="category-card" onclick="filterByCategory('apparel')">👕<br>服装鞋包</div>
+      <div class="category-card" onclick="filterByCategory('food')">🍎<br>食品饮料</div>
+      <div class="category-card" onclick="filterByCategory('home')">🏠<br>家居用品</div>
+      <div class="category-card" onclick="filterByCategory('outdoor')">⛺<br>户外装备</div>
+      <div class="category-card" onclick="filterByCategory('baby')">🍼<br>母婴用品</div>
     </div>
 
     <h2 class="title" style="margin-top:40px;">推荐源头好货</h2>
@@ -133,6 +159,21 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 <div id="view-products" class="page-view">
   <div class="container">
     <h2 class="title">全线商品导航</h2>
+    
+    <div class="search-filter-box">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="搜索您需要的源头好货名称..." onkeydown="if(event.key==='Enter') filterProducts()">
+        <button class="btn" onclick="filterProducts()">搜索</button>
+      </div>
+      <div class="filter-tags" id="filterTags">
+        <button class="tag-btn active" onclick="filterByCategory('all', this)">全部商品</button>
+        <button class="tag-btn" onclick="filterByCategory('electronics', this)">电子科技</button>
+        <button class="tag-btn" onclick="filterByCategory('food', this)">食品饮料</button>
+        <button class="tag-btn" onclick="filterByCategory('home', this)">家居用品</button>
+        <button class="tag-btn" onclick="filterByCategory('outdoor', this)">户外装备</button>
+      </div>
+    </div>
+
     <div class="product-grid" id="allProductGrid"></div>
   </div>
 </div>
@@ -209,12 +250,17 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
     <div class="product-grid">
       <div class="product-card" style="padding:20px;">
         <h3>🏭 深圳市科创电子有限公司</h3>
-        <p style="color:#666;margin:10px 0;">主营：TWS蓝牙耳机、智能手环、无线充电器</p>
+        <p style="color:#666;margin:10px 0;">主营：TWS蓝牙耳机、智能手环、无线充电器、航拍无人机</p>
         <button class="btn" onclick="switchPage('chat')">联系工厂</button>
       </div>
       <div class="product-card" style="padding:20px;">
         <h3>🌾 黑龙江绿色农业生产基地</h3>
         <p style="color:#666;margin:10px 0;">主营：有机谷物代餐、燕麦片、出口级坚果</p>
+        <button class="btn" onclick="switchPage('chat')">联系工厂</button>
+      </div>
+      <div class="product-card" style="padding:20px;">
+        <h3>🏠 永康市智家生活用品厂</h3>
+        <p style="color:#666;margin:10px 0;">主营：声波电动牙刷、智能门锁、人体感应夜灯</p>
         <button class="btn" onclick="switchPage('chat')">联系工厂</button>
       </div>
     </div>
@@ -282,9 +328,9 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
     <div class="footer-col">
       <h4>服务与支持</h4>
       <ul>
-        <li><a href="javascript:void(0)" onclick="alert('售后政策：提供全球质量保障与退换货协助服务。')">采购买家保障</a></li>
-        <li><a href="javascript:void(0)" onclick="alert('OEM/ODM：支持Logo印制、外包装及外观个性化定制。')">定制化 (OEM/ODM)</a></li>
-        <li><a href="javascript:void(0)" onclick="alert('物流说明：支持海运、空运及国际快递直达全球。')">国际物流指引</a></li>
+        <li><a href="javascript:void(0)" onclick="showToast('售后政策：提供全球质量保障与退换货协助服务。')">采购买家保障</a></li>
+        <li><a href="javascript:void(0)" onclick="showToast('OEM/ODM：支持Logo印制、外包装及外观个性化定制。')">定制化 (OEM/ODM)</a></li>
+        <li><a href="javascript:void(0)" onclick="showToast('物流说明：支持海运、空运及国际快递直达全球。')">国际物流指引</a></li>
         <li><a href="javascript:void(0)" onclick="switchPage('chat')">常见问题 FAQ</a></li>
       </ul>
     </div>
@@ -304,13 +350,14 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 </footer>
 
 <script>
-// 商品数据源
+// 扩展商品数据源（分类：electronics, food, home, outdoor）
 const productsData = [
   {
     id: 1, 
     title: "TWS智能主动降噪蓝牙耳机", 
     price: 19.99, 
     moq: 100, 
+    category: "electronics",
     img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600", 
     desc: "采用蓝牙 5.3 芯片，支持 -35dB 主动降噪与透明模式。单次续航 8 小时，配合充电仓可达 36 小时。符合 CE/FCC/RoHS 出口标准，支持 OEM 品牌定制Logo及包材。"
   },
@@ -319,6 +366,7 @@ const productsData = [
     title: "低GI有机谷物代餐燕麦片", 
     price: 15.99, 
     moq: 500, 
+    category: "food",
     img: "https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=600", 
     desc: "优质源头农场直供，富含高膳食纤维与多种微量元素，低热量强饱腹感。具备 FDA、USDA 及国际有机认证，适合跨境电商及大型超市采购。"
   },
@@ -327,6 +375,7 @@ const productsData = [
     title: "智能人体红外感应夜灯", 
     price: 29.99, 
     moq: 200, 
+    category: "home",
     img: "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=600", 
     desc: "磁吸式极简设计，内置 1200mAh 大容量锂电池，无需插电。支持广角 120 度红外感应，3-5米自动亮灯。可定制外壳颜色与礼盒包装。"
   },
@@ -335,6 +384,7 @@ const productsData = [
     title: "多功能高清心率血氧智能手表", 
     price: 34.50, 
     moq: 50, 
+    category: "electronics",
     img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600", 
     desc: "1.85 英寸 AMOLED 全高清触摸屏，支持全天候心率、血氧、睡眠监测及 100+ 运动模式。IP68 级防水，支持多国语言系统界面与 APP 定制。"
   },
@@ -343,7 +393,8 @@ const productsData = [
     title: "便携式超声波电动牙刷（配4刷头）", 
     price: 12.80, 
     moq: 300, 
-    img: "https://images.unsplash.com/photo-1559672170-56ee31370db5?w=600", 
+    category: "home",
+    img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600", 
     desc: "每分钟 42,000 次高频声波震动，具备 5 种洁齿模式与 2 分钟智能定时。采用杜邦软毛刷头，无线感应充电，单次充电可用 60 天。"
   },
   {
@@ -351,37 +402,102 @@ const productsData = [
     title: "轻量化户外防风双人双层帐篷", 
     price: 45.00, 
     moq: 80, 
+    category: "outdoor",
     img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600", 
     desc: "210T 防水涂层尼龙面料，PU3000mm 防水指数，高强度航空铝合金帐杆。抗风防暴雨，折叠后体积小巧便携，非常适合户外露营与越野拉练。"
+  },
+  {
+    id: 7,
+    title: "4K超清三轴云台航拍无人机",
+    price: 129.00,
+    moq: 20,
+    category: "electronics",
+    img: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=600",
+    desc: "搭载 4K 高清防抖相机与三轴机械云台，支持 5 公里图传距离。GPS 智能返航与全向避障功能，续航可达 35 分钟，支持外贸出口与贴牌定制。"
+  },
+  {
+    id: 8,
+    title: "全自动3D人脸识别智能门锁",
+    price: 89.00,
+    moq: 30,
+    category: "home",
+    img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=600",
+    desc: "集成 3D 结构光人脸识别、指纹、密码、NFC及远程可视猫眼。内置高清广角摄像头与大容量锂电池，提供全方位的居家安全防护与智慧联动。"
   }
 ];
 
-// 全局购物车数据：[{ id, product, qty, checked }]
-let cart = [];
+// 全局购物车数据：从 localStorage 初始化
+let cart = JSON.parse(localStorage.getItem('ccc_cart')) || [];
 let currentProduct = null;
 let currentCheckoutItems = [];
 
-// 初始化商品
-function renderProducts() {
+// Toast 提示函数
+function showToast(message) {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 2500);
+}
+
+// 初始化商品展示
+function renderProducts(list = productsData) {
   const homeGrid = document.getElementById("homeProductGrid");
   const allGrid = document.getElementById("allProductGrid");
-  let html = "";
   
-  productsData.forEach(p => {
-    html += `
-      <div class="product-card" onclick="openDetail(${p.id})">
-        <img src="${p.img}" alt="${p.title}">
-        <div class="product-info">
-          <h3>${p.title}</h3>
-          <div class="price">$${p.price}</div>
-          <p style="font-size:12px;color:#888;">起订量：${p.moq}件</p>
-          <button class="btn" style="width:100%;margin-top:10px;">查看详情</button>
+  let html = "";
+  if(list.length === 0) {
+    html = `<div style="grid-column: span 3; text-align:center; padding:40px; color:#888;">没有找到相关商品</div>`;
+  } else {
+    list.forEach(p => {
+      html += `
+        <div class="product-card" onclick="openDetail(${p.id})">
+          <img src="${p.img}" alt="${p.title}">
+          <div class="product-info">
+            <h3>${p.title}</h3>
+            <div class="price">$${p.price}</div>
+            <p style="font-size:12px;color:#888;">起订量：${p.moq}件</p>
+            <button class="btn" style="width:100%;margin-top:10px;">查看详情</button>
+          </div>
         </div>
-      </div>
-    `;
-  });
+      `;
+    });
+  }
+  
   homeGrid.innerHTML = html;
   allGrid.innerHTML = html;
+  updateCartBadge();
+}
+
+// 搜索过滤商品
+function filterProducts() {
+  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+  const filtered = productsData.filter(p => p.title.toLowerCase().includes(keyword) || p.desc.toLowerCase().includes(keyword));
+  renderProducts(filtered);
+}
+
+// 按分类过滤商品
+function filterByCategory(category, btnElement) {
+  switchPage("products");
+  if (btnElement) {
+    document.querySelectorAll(".tag-btn").forEach(b => b.classList.remove("active"));
+    btnElement.classList.add("active");
+  } else {
+    document.querySelectorAll(".tag-btn").forEach((b, index) => {
+      if (index === 0) b.classList.add("active");
+      else b.classList.remove("active");
+    });
+  }
+
+  if (category === 'all') {
+    renderProducts(productsData);
+  } else {
+    const filtered = productsData.filter(p => p.category === category);
+    renderProducts(filtered);
+  }
 }
 
 // 视图切换
@@ -416,11 +532,17 @@ function openDetail(id) {
   switchPage("detail");
 }
 
+// 保存购物车到 localStorage
+function saveCart() {
+  localStorage.setItem('ccc_cart', JSON.stringify(cart));
+  updateCartBadge();
+}
+
 // 加入购物车
 function addToCart() {
   const qty = parseInt(document.getElementById("orderQty").value);
   if(qty < currentProduct.moq) {
-    alert("采购数量不能低于起订量 " + currentProduct.moq + " 件");
+    showToast("采购数量不能低于起订量 " + currentProduct.moq + " 件");
     return;
   }
   
@@ -436,8 +558,8 @@ function addToCart() {
     });
   }
   
-  updateCartBadge();
-  alert("已成功添加 " + qty + " 件【" + currentProduct.title + "】到购物车！");
+  saveCart();
+  showToast("已成功添加 " + qty + " 件商品到购物车！");
 }
 
 // 更新顶栏购物车角标
@@ -481,7 +603,6 @@ function renderCart() {
   });
   tbody.innerHTML = html;
   
-  // 检查是否全选
   const allChecked = cart.length > 0 && cart.every(item => item.checked);
   document.getElementById("selectAll").checked = allChecked;
   
@@ -493,12 +614,12 @@ function changeQty(id, delta) {
   const item = cart.find(i => i.id === id);
   if(!item) return;
   if(item.qty + delta < item.product.moq) {
-    alert("该商品起订量为 " + item.product.moq + " 件");
+    showToast("该商品起订量为 " + item.product.moq + " 件");
     return;
   }
   item.qty += delta;
+  saveCart();
   renderCart();
-  updateCartBadge();
 }
 
 // 直接修改输入框数量
@@ -506,12 +627,12 @@ function updateQtyInput(id, val) {
   const item = cart.find(i => i.id === id);
   let qty = parseInt(val);
   if(isNaN(qty) || qty < item.product.moq) {
-    alert("该商品起订量为 " + item.product.moq + " 件");
+    showToast("该商品起订量为 " + item.product.moq + " 件");
     qty = item.product.moq;
   }
   item.qty = qty;
+  saveCart();
   renderCart();
-  updateCartBadge();
 }
 
 // 单项勾选/取消
@@ -544,16 +665,16 @@ function calculateCartTotal() {
 // 删除单个购物车商品
 function removeCartItem(id) {
   cart = cart.filter(i => i.id !== id);
+  saveCart();
   renderCart();
-  updateCartBadge();
 }
 
 // 清空购物车
 function clearCart() {
   if(confirm("确定要清空购物车吗？")) {
     cart = [];
+    saveCart();
     renderCart();
-    updateCartBadge();
   }
 }
 
@@ -561,7 +682,7 @@ function clearCart() {
 function checkoutCart() {
   const selected = cart.filter(item => item.checked);
   if(selected.length === 0) {
-    alert("请至少勾选一款要结算采购的商品！");
+    showToast("请至少勾选一款要结算采购的商品！");
     return;
   }
   
@@ -573,7 +694,7 @@ function checkoutCart() {
 function directCheckout() {
   const qty = parseInt(document.getElementById("orderQty").value);
   if(qty < currentProduct.moq) {
-    alert("采购数量不能低于起订量 " + currentProduct.moq + " 件");
+    showToast("采购数量不能低于起订量 " + currentProduct.moq + " 件");
     return;
   }
   
@@ -617,11 +738,10 @@ function selectPay(el) {
 
 // 确认支付
 function confirmPayment() {
-  alert("订单支付成功！奇创芯智供应链系统已生成采购合同，专员将尽快为您安排发货。");
-  // 清理结算过的购物车项
+  showToast("订单支付成功！系统已生成采购合同。");
   const checkedIds = currentCheckoutItems.map(i => i.id);
   cart = cart.filter(item => !checkedIds.includes(item.id));
-  updateCartBadge();
+  saveCart();
   switchPage("home");
 }
 
