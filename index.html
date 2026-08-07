@@ -63,11 +63,19 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 .pay-card{border:2px solid #ddd;padding:15px;border-radius:6px;text-align:center;cursor:pointer;}
 .pay-card.active{border-color:#ff6600;background:#fff7f2;}
 
-/* 页脚 */
-footer{background:#222;color:#fff;text-align:center;padding:25px;font-size:14px;margin-top:40px;}
+/* 页脚样式强化 */
+footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
+.footer-container{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:30px;border-bottom:1px solid #3e4451;}
+.footer-col h4{color:#fff;font-size:16px;margin-bottom:18px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{color:#abb2bf;text-decoration:none;font-size:14px;transition:0.2s;}
+.footer-col ul li a:hover{color:#ff6600;}
+.contact-info p{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.copyright{text-align:center;font-size:13px;color:#7f848e;padding-top:20px;}
 
 @media(max-width:768px){
-  .product-grid, .detail-box, .category-grid{grid-template-columns:1fr;}
+  .product-grid, .detail-box, .category-grid, .footer-container{grid-template-columns:1fr;}
   nav{display:none;}
 }
 </style>
@@ -203,16 +211,126 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;font-size:14px;
   </div>
 </div>
 
+<!-- 底部页脚：小菜单与通讯方式 -->
 <footer>
-  © 2026 奇创芯智有限公司 Curious Creative Core Smart Group | 全球 B2B 供应链采购平台
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3 style="color:#fff;font-size:18px;margin-bottom:12px;">奇创芯智有限公司</h3>
+      <p style="font-size:13px;line-height:1.8;color:#9da5b4;">
+        Curious Creative Core Smart Group<br>
+        全球领先的一站式 B2B 智能供应链采购与跨境出口平台。
+      </p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>快速导航菜单</h4>
+      <ul>
+        <li><a onclick="switchPage('home')">平台首页</a></li>
+        <li><a onclick="switchPage('products')">全部商品大厅</a></li>
+        <li><a onclick="switchPage('suppliers')">认证优质工厂</a></li>
+        <li><a onclick="switchPage('chat')">在线客户服务</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col">
+      <h4>服务与支持</h4>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="alert('售后政策：提供全球质量保障与退换货协助服务。')">采购买家保障</a></li>
+        <li><a href="javascript:void(0)" onclick="alert('OEM/ODM：支持Logo印制、外包装及外观个性化定制。')">定制化 (OEM/ODM)</a></li>
+        <li><a href="javascript:void(0)" onclick="alert('物流说明：支持海运、空运及国际快递直达全球。')">国际物流指引</a></li>
+        <li><a href="javascript:void(0)" onclick="switchPage('chat')">常见问题 FAQ</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-col contact-info">
+      <h4>联系我们</h4>
+      <p>📍 <strong>地址：</strong>深圳市南山区科技园奇创芯智大厦 18 楼</p>
+      <p>📞 <strong>电话：</strong>400-888-9999 / +86 (0755) 8888-6666</p>
+      <p>✉️ <strong>邮箱：</strong>support@ccc-smartgroup.com</p>
+      <p>💼 <strong>商务：</strong>bd@ccc-smartgroup.com</p>
+    </div>
+  </div>
+  
+  <div class="copyright">
+    © 2026 奇创芯智有限公司 Curious Creative Core Smart Group 版权所有 | 粤ICP备88888888号
+  </div>
 </footer>
 
 <script>
-// 商品数据源
+// 扩展后的多品类商品数据源
 const productsData = [
-  {id: 1, title: "TWS智能蓝牙耳机", price: 19.99, moq: 100, img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600", desc: "蓝牙5.3，高清降噪，持续续航36小时，具备CE/FCC出口认证。"},
-  {id: 2, title: "低GI谷物代餐燕麦", price: 15.99, moq: 500, img: "https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=600", desc: "源头农场直供，低热量饱腹感强，具有FDA及国际有机认证。"},
-  {id: 3, title: "智能人体感应夜灯", price: 29.99, moq: 200, img: "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=600", desc: "支持USB充电，人体红外感应，支持外观与Logo定制。"}
+  {
+    id: 1, 
+    title: "TWS智能主动降噪蓝牙耳机", 
+    price: 19.99, 
+    moq: 100, 
+    img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600", 
+    desc: "采用蓝牙 5.3 芯片，支持 -35dB 主动降噪与透明模式。单次续航 8 小时，配合充电仓可达 36 小时。符合 CE/FCC/RoHS 出口标准，支持 OEM 品牌定制Logo及包材。"
+  },
+  {
+    id: 2, 
+    title: "低GI有机谷物代餐燕麦片", 
+    price: 15.99, 
+    moq: 500, 
+    img: "https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=600", 
+    desc: "优质源头农场直供，富含高膳食纤维与多种微量元素，低热量强饱腹感。具备 FDA、USDA 及国际有机认证，适合跨境电商及大型超市采购。"
+  },
+  {
+    id: 3, 
+    title: "智能人体红外感应夜灯", 
+    price: 29.99, 
+    moq: 200, 
+    img: "https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=600", 
+    desc: "磁吸式极简设计，内置 1200mAh 大容量锂电池，无需插电。支持广角 120 度红外感应，3-5米自动亮灯。可定制外壳颜色与礼盒包装。"
+  },
+  {
+    id: 4, 
+    title: "多功能高清心率血氧智能手表", 
+    price: 34.50, 
+    moq: 50, 
+    img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600", 
+    desc: "1.85 英寸 AMOLED 全高清触摸屏，支持全天候心率、血氧、睡眠监测及 100+ 运动模式。IP68 级防水，支持多国语言系统界面与 APP 定制。"
+  },
+  {
+    id: 5, 
+    title: "便携式超声波电动牙刷（配4刷头）", 
+    price: 12.80, 
+    moq: 300, 
+    img: "https://images.unsplash.com/photo-1559672170-56ee31370db5?w=600", 
+    desc: "每分钟 42,000 次高频声波震动，具备 5 种洁齿模式与 2 分钟智能定时。采用杜邦软毛刷头，无线感应充电，单次充电可用 60 天。"
+  },
+  {
+    id: 6, 
+    title: "轻量化户外防风双人双层帐篷", 
+    price: 45.00, 
+    moq: 80, 
+    img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600", 
+    desc: "210T 防水涂层尼龙面料，PU3000mm 防水指数，高强度航空铝合金帐杆。抗风防暴雨，折叠后体积小巧便携，非常适合户外露营与越野拉练。"
+  },
+  {
+    id: 7, 
+    title: "氮化镓 65W 快充多口充电器", 
+    price: 14.20, 
+    moq: 200, 
+    img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600", 
+    desc: "采用第三代黑科技 GaN 芯片，体积缩小 40%。配备 2C1A 三接口，可同时为笔记本电脑、平板和手机快速充电，兼容 PD3.0/QC4.0 协议。"
+  },
+  {
+    id: 8, 
+    title: "温控变色玻尿酸保湿唇膏", 
+    price: 3.50, 
+    moq: 1000, 
+    img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600", 
+    desc: "天然植物萃取成分，随人体温与 pH 值改变唇色。深层滋润补水，改善唇纹。支持千件级 ODM 私人标签（Private Label）定制。"
+  },
+  {
+    id: 9, 
+    title: "智能静音空气加湿器（带香薰扩散）", 
+    price: 18.60, 
+    moq: 150, 
+    img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600", 
+    desc: "3L 大容量水箱，支持连续加湿 24 小时。低至 28dB 超静音运行，七彩氛围灯与香薰精油添加功能，缺水自动断电保护。"
+  }
 ];
 
 let currentProduct = null;
