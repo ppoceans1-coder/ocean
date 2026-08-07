@@ -16,7 +16,6 @@ background:#f5f6f8;
 color:#333;
 line-height:1.6;
 }
-/*公告栏*/
 .notice{
 height:40px;
 background:#fff3e6;
@@ -33,7 +32,6 @@ right:20px;
 cursor:pointer;
 padding:0 8px;
 }
-/*导航*/
 header{
 height:80px;
 background:white;
@@ -100,7 +98,6 @@ transition:background 0.3s;
 .btn:hover{
 background:#e55a00;
 }
-/*移动端汉堡菜单*/
 .menu-btn{
 display:none;
 font-size:26px;
@@ -108,7 +105,6 @@ color:#333;
 cursor:pointer;
 user-select:none;
 }
-/*轮播banner*/
 .banner-box{
 width:100%;
 height:350px;
@@ -168,7 +164,6 @@ cursor:pointer;
 .dot.active{
 background:#fff;
 }
-/*搜索区域*/
 .search-area{
 background:white;
 padding:30px 8%;
@@ -205,7 +200,6 @@ transition:background 0.3s;
 .search button:hover{
 background:#e55a00;
 }
-/*筛选栏*/
 .filter-bar{
 padding:20px 8%;
 background:#fff;
@@ -227,7 +221,6 @@ border:1px solid #ddd;
 border-radius:4px;
 outline:none;
 }
-/*通用容器*/
 .container{
 padding:30px 8% 60px;
 }
@@ -237,7 +230,6 @@ font-size:35px;
 margin-bottom:35px;
 color:#222;
 }
-/*分类区域*/
 .category{
 display:grid;
 grid-template-columns:repeat(6,1fr);
@@ -257,7 +249,6 @@ box-shadow:0 8px 20px rgba(0,0,0,0.1);
 transform:translateY(-5px);
 color:#ff6600;
 }
-/*商品区域【图文匹配已修改】*/
 .products{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -270,6 +261,7 @@ padding:20px;
 border-radius:12px;
 transition:.3s ease;
 overflow:hidden;
+cursor:pointer;
 }
 .product:hover{
 transform:translateY(-8px);
@@ -305,24 +297,9 @@ font-size:25px;
 font-weight:bold;
 margin:10px 0;
 }
-.product button{
-margin-top:15px;
-background:#ff6600;
-color:white;
-border:none;
-padding:12px 30px;
-border-radius:5px;
-cursor:pointer;
-transition:background 0.3s;
-width:100%;
-}
-.product button:hover{
-background:#e55a00;
-}
 .load-more-box{
 text-align:center;
 }
-/*供应商区块*/
 .factory{
 background:white;
 padding:50px;
@@ -339,7 +316,6 @@ color:#666;
 font-size:16px;
 margin-bottom:20px;
 }
-/*客户案例*/
 .case-area{
 padding:60px 8%;
 }
@@ -354,7 +330,6 @@ border-radius:10px;
 padding:20px;
 text-align:center;
 }
-/*页脚*/
 footer{
 background:#222;
 color:white;
@@ -363,7 +338,6 @@ text-align:center;
 margin-top:40px;
 font-size:14px;
 }
-/*回到顶部*/
 .backtop{
 width:45px;
 height:45px;
@@ -380,7 +354,6 @@ cursor:pointer;
 display:none;
 z-index:99;
 }
-/*悬浮在线客服*/
 .service-float{
 width:45px;
 height:45px;
@@ -396,7 +369,6 @@ font-size:20px;
 cursor:pointer;
 z-index:99;
 }
-/*弹窗样式*/
 .modal-mask{
 position:fixed;
 left:0;top:0;
@@ -445,7 +417,6 @@ border-radius:6px;
 font-size:16px;
 cursor:pointer;
 }
-/*响应式适配*/
 @media(max-width:900px){
 .nav-wrap{
 flex:1;
@@ -541,6 +512,7 @@ padding:30px 20px;
 <a href="suppliers.html">供应商</a>
 <a href="service.html">采购服务</a>
 <a href="contact.html">联系我们</a>
+<a href="customer-service.html">在线客服</a>
 </nav>
 <span class="lang-switch" id="langBtn">中文 / EN</span>
 </div>
@@ -615,7 +587,7 @@ padding:30px 20px;
 <section class="container">
 <h2 class="title">热门商品</h2>
 <div class="products" id="productWrap">
-<div class="product">
+<div class="product" onclick="location.href='product-detail.html'">
 <div class="product-img-box">
 <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
 </div>
@@ -626,7 +598,6 @@ padding:30px 20px;
 支持OEM/ODM印标
 </div>
 <div class="price">$19.99</div>
-<button onclick="detail()">查看详情</button>
 </div>
 <div class="product">
 <div class="product-img-box">
@@ -639,7 +610,6 @@ padding:30px 20px;
 具备出口食品认证
 </div>
 <div class="price">$15.99</div>
-<button onclick="detail()">查看详情</button>
 </div>
 <div class="product">
 <div class="product-img-box">
@@ -652,7 +622,6 @@ padding:30px 20px;
 支持包装定制
 </div>
 <div class="price">$29.99</div>
-<button onclick="detail()">查看详情</button>
 </div>
 </div>
 <div class="load-more-box">
@@ -682,7 +651,7 @@ padding:30px 20px;
 </footer>
 
 <div class="backtop" id="backTop">↑</div>
-<div class="service-float" onclick="openService()">💬</div>
+<div class="service-float" onclick="location.href='customer-service.html'">💬</div>
 
 <div class="modal-mask" id="inquiryMask">
 <div class="modal">
@@ -693,18 +662,6 @@ padding:30px 20px;
 <input type="text" placeholder="联系电话/邮箱">
 <textarea rows="4" placeholder="描述想要采购的商品、数量、需求"></textarea>
 <button class="modal-submit" onclick="submitInquiry()">提交询价</button>
-</div>
-</div>
-
-<div class="modal-mask" id="serviceMask">
-<div class="modal">
-<span class="close-modal" onclick="closeService()">✕</span>
-<h3>在线客服咨询</h3>
-<p style="margin-bottom:15px">工作时间：周一至周六 9:00-18:00</p>
-<input type="text" placeholder="您的姓名">
-<input type="text" placeholder="联系方式">
-<textarea rows="4" placeholder="请输入您想咨询的问题"></textarea>
-<button class="modal-submit" onclick="sendServiceMsg()">发送咨询</button>
 </div>
 </div>
 
@@ -752,11 +709,6 @@ const navBox = document.getElementById('navBox');
 menuBtn.addEventListener('click',()=>{
 navBox.classList.toggle('active');
 })
-document.addEventListener('click',function(e){
-if(!header.contains(e.target)){
-navBox.classList.remove('active');
-}
-})
 
 window.addEventListener("scroll",function(){
 const header=document.getElementById("header");
@@ -793,15 +745,12 @@ updateBanner();
 }
 })
 let timer=setInterval(slideBanner,4000);
-document.querySelector(".banner-box").onmouseover=()=>clearInterval(timer);
-document.querySelector(".banner-box").onmouseout=()=>timer=setInterval(slideBanner,4000);
 
 const searchInput=document.getElementById("searchInput");
 function searchProduct(){
 let key=searchInput.value.trim();
 if(key){
-alert("正在搜索商品："+key);
-searchInput.value="";
+location.href="products.html";
 }else{
 alert("请输入商品名称");
 }
@@ -811,12 +760,7 @@ if(e.key==="Enter") searchProduct();
 })
 
 function goCategory(name){
-alert("进入分类："+name);
 location.href="products.html";
-}
-
-function detail(){
-window.location.href="product-detail.html";
 }
 
 let loadBtn=document.getElementById("loadMoreBtn");
@@ -828,23 +772,21 @@ loadBtn.innerText="加载中...";
 setTimeout(()=>{
 let wrap=document.getElementById("productWrap");
 let html=`
-<div class="product">
+<div class="product" onclick="location.href='product-detail.html'">
 <div class="product-img-box">
 <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600">
 </div>
 <h3>户外折叠露营桌椅套装</h3>
 <div class="info">供应商：户外用品工厂<br>起订量：300件<br>支持混批采购</div>
 <div class="price">$32.50</div>
-<button onclick="detail()">查看详情</button>
 </div>
-<div class="product">
+<div class="product" onclick="location.href='product-detail.html'">
 <div class="product-img-box">
 <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600">
 </div>
 <h3>婴儿纯棉防水隔尿垫</h3>
 <div class="info">供应商：母婴用品工厂<br>起订量：200件<br>全套质检报告</div>
 <div class="price">$21.80</div>
-<button onclick="detail()">查看详情</button>
 </div>
 `;
 wrap.insertAdjacentHTML("beforeend",html);
@@ -855,10 +797,6 @@ loadFlag=false;
 }
 
 function filterProduct(){
-const min = document.getElementById("minPrice").value;
-const max = document.getElementById("maxPrice").value;
-const moq = document.getElementById("moqSelect").value;
-alert(`筛选条件：最低价${min||"不限"}，最高价${max||"不限"}，起订量${moq}`);
 location.href="products.html";
 }
 
@@ -870,183 +808,10 @@ alert("询价信息提交成功！我们将尽快联系您");
 closeInquiry();
 }
 mask.onclick=function(e){if(e.target===mask) closeInquiry();}
-
-const serviceMask=document.getElementById("serviceMask");
-function openService(){serviceMask.style.display="flex";}
-function closeService(){serviceMask.style.display="none";}
-function sendServiceMsg(){
-alert("咨询消息发送成功，客服会尽快回复！");
-closeService();
-}
-serviceMask.onclick=function(e){if(e.target===serviceMask) closeService();}
 </script>
 </body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TWS智能蓝牙耳机 - 嘻嘻嘻斯基</title>
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Microsoft YaHei",Arial;
-}
-body{background:#f5f6f8;}
-header{
-height:80px;
-background:#fff;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 8%;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
-position:sticky;
-top:0;
-z-index:99;
-}
-.logo{
-font-size:26px;
-font-weight:bold;
-color:#ff6600;
-cursor:pointer;
-}
-.back{
-color:#333;
-text-decoration:none;
-}
-.container{
-padding:40px 8%;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-background:#fff;
-margin:30px 8%;
-border-radius:14px;
-}
-.img-box img{
-width:100%;
-border-radius:10px;
-}
-.info h1{
-font-size:28px;
-margin-bottom:15px;
-}
-.price{
-font-size:32px;
-color:#ff6600;
-font-weight:bold;
-margin-bottom:20px;
-}
-.desc{
-line-height:2;
-color:#555;
-margin-bottom:30px;
-}
-.btn{
-background:#ff6600;
-border:none;
-color:#fff;
-padding:14px 32px;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
-margin-right:15px;
-}
-.btn.gray{background:#666;}
-footer{
-background:#222;
-color:#fff;
-text-align:center;
-padding:25px;
-margin-top:50px;
-font-size:14px;
-}
-@media(max-width:768px){
-.container{
-grid-template-columns:1fr;
-margin:20px 5%;
-padding:25px;
-}
-}
-</style>
-</head>
-<body>
-<header>
-<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
-<a class="back" href="index.html">← 返回首页</a>
-</header>
-<div class="container">
-<div class="img-box">
-<img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
-</div>
-<div class="info">
-<h1>TWS智能蓝牙耳机</h1>
-<div class="price">$19.99</div>
-<div class="desc">
-供应商：深圳科技厂家<br>
-起订量：100件<br>
-支持OEM/ODM印标定制<br>
-蓝牙5.3、高清通话、持久续航，具备出口相关认证，适合跨境采购。
-</div>
-<button class="btn" onclick="openInquiry()">立即询价</button>
-<button class="btn gray" onclick="alert('收藏成功')">收藏商品</button>
-</div>
-</div>
-<footer>
-© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
-</footer>
-
-<script>
-// 复用询价弹窗函数
-const mask=document.createElement('div');
-mask.innerHTML=`
-<div class="modal-mask" id="inquiryMask">
-<div class="modal">
-<span class="close-modal" onclick="closeInquiry()">✕</span>
-<h3>立即发起采购询价</h3>
-<input type="text" placeholder="您的公司名称">
-<input type="text" placeholder="联系人">
-<input type="text" placeholder="联系电话/邮箱">
-<textarea rows="4" placeholder="描述想要采购的商品、数量、需求"></textarea>
-<button class="modal-submit" onclick="submitInquiry()">提交询价</button>
-</div>
-</div>
-`;
-document.body.appendChild(mask);
-const style = document.createElement('style');
-style.innerHTML=`
-.modal-mask{
-position:fixed;left:0;top:0;width:100%;height:100%;
-background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:9999;
-}
-.modal{width:460px;background:#fff;border-radius:12px;padding:30px;position:relative;}
-.close-modal{position:absolute;right:15px;top:15px;font-size:22px;cursor:pointer;color:#999;}
-.modal h3{margin-bottom:20px;font-size:22px;color:#333;}
-.modal input,.modal textarea{width:100%;border:1px solid #ddd;padding:12px;margin-bottom:15px;border-radius:6px;outline:none;font-size:15px;}
-.modal-submit{width:100%;padding:13px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;}
-@media(max-width:500px){.modal{width:90%;}}
-`;
-document.head.appendChild(style);
-
-function openInquiry(){
-document.getElementById("inquiryMask").style.display="flex";
-}
-function closeInquiry(){
-document.getElementById("inquiryMask").style.display="none";
-}
-function submitInquiry(){
-alert("询价信息提交成功！我们将尽快联系您");
-closeInquiry();
-}
-document.getElementById("inquiryMask").onclick=function(e){
-if(e.target===this) closeInquiry();
-}
-</script>
-</body>
-</html><!DOCTYPE html>
+</html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1061,6 +826,7 @@ padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-inde
 }
 .logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
 nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a.active{color:#ff6600;}
 nav a:hover{color:#ff6600;}
 .container{padding:40px 8%;}
 .title{text-align:center;font-size:32px;margin-bottom:30px;}
@@ -1068,7 +834,7 @@ nav a:hover{color:#ff6600;}
 .filter input,.filter select{padding:8px;border:1px solid #ddd;border-radius:4px;}
 .btn{background:#ff6600;color:#fff;border:none;padding:8px 18px;border-radius:4px;cursor:pointer;}
 .product-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
-.item{background:#fff;border-radius:10px;overflow:hidden;transition:0.3s;}
+.item{background:#fff;border-radius:10px;overflow:hidden;transition:0.3s;cursor:pointer;}
 .item:hover{transform:translateY(-6px);box-shadow:0 8px 20px rgba(0,0,0,0.08);}
 .item img{width:100%;height:200px;object-fit:cover;}
 .item-text{padding:16px;}
@@ -1084,10 +850,11 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 <div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
 <nav>
 <a href="index.html">首页</a>
-<a href="products.html" style="color:#ff6600">商品导航</a>
+<a href="products.html" class="active">商品导航</a>
 <a href="suppliers.html">供应商</a>
 <a href="service.html">采购服务</a>
 <a href="contact.html">联系我们</a>
+<a href="customer-service.html">在线客服</a>
 </nav>
 </header>
 <div class="container">
@@ -1151,7 +918,410 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 </div>
 <footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
 </body>
-</html><!DOCTYPE html>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWS智能蓝牙耳机 - 嘻嘻嘻斯基</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Microsoft YaHei",Arial;
+}
+body{background:#f5f6f8;}
+header{
+height:80px;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 8%;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+position:sticky;
+top:0;
+z-index:99;
+}
+.logo{
+font-size:26px;
+font-weight:bold;
+color:#ff6600;
+cursor:pointer;
+}
+.nav-right a{
+text-decoration:none;
+color:#333;
+margin-left:16px;
+}
+.nav-right a:hover{color:#ff6600;}
+.container{
+padding:40px 8%;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+background:#fff;
+margin:30px 8%;
+border-radius:14px;
+}
+.img-box img{
+width:100%;
+border-radius:10px;
+}
+.info h1{
+font-size:28px;
+margin-bottom:15px;
+}
+.price{
+font-size:32px;
+color:#ff6600;
+font-weight:bold;
+margin-bottom:20px;
+}
+.desc{
+line-height:2;
+color:#555;
+margin-bottom:30px;
+}
+.btn{
+background:#ff6600;
+border:none;
+color:#fff;
+padding:14px 32px;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+margin-right:15px;
+}
+.btn.gray{background:#666;}
+.btn.blue{background:#0088ff;}
+footer{
+background:#222;
+color:#fff;
+text-align:center;
+padding:25px;
+margin-top:50px;
+font-size:14px;
+}
+@media(max-width:768px){
+.container{
+grid-template-columns:1fr;
+margin:20px 5%;
+padding:25px;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<div class="nav-right">
+<a href="index.html">首页</a>
+<a href="products.html">商品列表</a>
+<a href="customer-service.html">在线客服</a>
+</div>
+</header>
+<div class="container">
+<div class="img-box">
+<img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600">
+</div>
+<div class="info">
+<h1>TWS智能蓝牙耳机</h1>
+<div class="price">$19.99</div>
+<div class="desc">
+供应商：深圳科技厂家<br>
+起订量：100件<br>
+支持OEM/ODM印标定制<br>
+蓝牙5.3、高清通话、持久续航，具备出口相关认证，适合跨境采购。
+</div>
+<button class="btn blue" onclick="location.href='customer-service.html'">咨询客服</button>
+<button class="btn" onclick="location.href='pay.html'">立即下单</button>
+<button class="btn gray" onclick="alert('收藏成功')">收藏商品</button>
+</div>
+</div>
+<footer>
+© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply
+</footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线客服中心</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;padding:0 8%;
+box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+header nav{margin-left:40px;}
+header nav a{text-decoration:none;color:#333;margin:0 12px;}
+header nav a.active{color:#ff6600;}
+.wrap{max-width:900px;margin:40px auto;background:#fff;border-radius:12px;padding:30px;}
+.title{font-size:26px;margin-bottom:20px;border-bottom:1px solid #eee;padding-bottom:10px;}
+.chat-area{border:1px solid #ddd;border-radius:8px;height:320px;padding:15px;overflow-y:auto;margin-bottom:15px;}
+.msg-left{background:#efefef;max-width:70%;padding:8px 12px;border-radius:6px;margin-bottom:10px;}
+.msg-right{background:#ff6600;color:#fff;max-width:70%;margin-left:auto;padding:8px 12px;border-radius:6px;margin-bottom:10px;}
+.input-row{display:flex;gap:10px;}
+textarea{flex:1;padding:12px;border:1px solid #ddd;border-radius:6px;resize:none;height:80px;outline:none;}
+.send-btn{width:100px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="customer-service.html" class="active">在线客服</a>
+</nav>
+</header>
+<div class="wrap">
+<h2 class="title">在线客服咨询</h2>
+<div class="chat-area" id="chatBox">
+<div class="msg-left">客服：您好，请问有什么可以帮您？</div>
+</div>
+<div class="input-row">
+<textarea id="msgInput" placeholder="输入消息..."></textarea>
+<button class="send-btn" onclick="sendMsg()">发送</button>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基</footer>
+<script>
+function sendMsg(){
+let val = document.getElementById("msgInput").value.trim();
+if(!val) return;
+let box = document.getElementById("chatBox");
+box.innerHTML += `<div class="msg-right">${val}</div>`;
+document.getElementById("msgInput").value="";
+box.scrollTop = box.scrollHeight;
+// 模拟客服自动回复
+setTimeout(()=>{
+box.innerHTML += `<div class="msg-left">客服：收到，稍后为您核实相关采购信息！</div>`;
+box.scrollTop = box.scrollHeight;
+},1000);
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线客服中心</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;padding:0 8%;
+box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+header nav{margin-left:40px;}
+header nav a{text-decoration:none;color:#333;margin:0 12px;}
+header nav a.active{color:#ff6600;}
+.wrap{max-width:900px;margin:40px auto;background:#fff;border-radius:12px;padding:30px;}
+.title{font-size:26px;margin-bottom:20px;border-bottom:1px solid #eee;padding-bottom:10px;}
+.chat-area{border:1px solid #ddd;border-radius:8px;height:320px;padding:15px;overflow-y:auto;margin-bottom:15px;}
+.msg-left{background:#efefef;max-width:70%;padding:8px 12px;border-radius:6px;margin-bottom:10px;}
+.msg-right{background:#ff6600;color:#fff;max-width:70%;margin-left:auto;padding:8px 12px;border-radius:6px;margin-bottom:10px;}
+.input-row{display:flex;gap:10px;}
+textarea{flex:1;padding:12px;border:1px solid #ddd;border-radius:6px;resize:none;height:80px;outline:none;}
+.send-btn{width:100px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="customer-service.html" class="active">在线客服</a>
+</nav>
+</header>
+<div class="wrap">
+<h2 class="title">在线客服咨询</h2>
+<div class="chat-area" id="chatBox">
+<div class="msg-left">客服：您好，请问有什么可以帮您？</div>
+</div>
+<div class="input-row">
+<textarea id="msgInput" placeholder="输入消息..."></textarea>
+<button class="send-btn" onclick="sendMsg()">发送</button>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基</footer>
+<script>
+function sendMsg(){
+let val = document.getElementById("msgInput").value.trim();
+if(!val) return;
+let box = document.getElementById("chatBox");
+box.innerHTML += `<div class="msg-right">${val}</div>`;
+document.getElementById("msgInput").value="";
+box.scrollTop = box.scrollHeight;
+// 模拟客服自动回复
+setTimeout(()=>{
+box.innerHTML += `<div class="msg-left">客服：收到，稍后为您核实相关采购信息！</div>`;
+box.scrollTop = box.scrollHeight;
+},1000);
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单支付</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;padding:0 8%;
+box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+.wrap{max-width:650px;margin:40px auto;background:#fff;border-radius:12px;padding:30px;}
+.title{font-size:26px;margin-bottom:25px;text-align:center;}
+.order-info{border:1px solid #eee;padding:20px;border-radius:8px;margin-bottom:20px;}
+.row{display:flex;justify-content:space-between;margin:12px 0;font-size:16px;}
+.total{font-size:22px;color:#ff6600;font-weight:bold;margin-top:15px;padding-top:15px;border-top:1px solid #eee;}
+.pay-way{margin:25px 0;}
+.pay-item{border:1px solid #ddd;padding:12px;border-radius:6px;margin-bottom:10px;cursor:pointer;}
+.pay-item.active{border-color:#ff6600;background:#fff8ef;}
+.submit-pay{width:100%;height:48px;background:#ff6600;color:#fff;border:none;border-radius:8px;font-size:17px;cursor:pointer;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+</header>
+<div class="wrap">
+<h2 class="title">订单确认 & 支付</h2>
+<div class="order-info">
+<div class="row"><span>商品名称</span><span>TWS智能蓝牙耳机</span></div>
+<div class="row"><span>单价</span><span>$19.99</span></div>
+<div class="row"><span>采购数量</span><span>100件</span></div>
+<div class="row total"><span>应付总额</span><span>$1999.00</span></div>
+</div>
+
+<div class="pay-way">
+<div class="pay-item active" onclick="selectPay(this)">线上对公转账</div>
+<div class="pay-item" onclick="selectPay(this)">跨境PayPal支付</div>
+<div class="pay-item" onclick="selectPay(this)">线下银行电汇</div>
+</div>
+
+<button class="submit-pay" onclick="paySuccess()">确认支付</button>
+</div>
+<footer>© 2026 嘻嘻嘻斯基</footer>
+<script>
+function selectPay(dom){
+document.querySelectorAll(".pay-item").forEach(item=>item.classList.remove("active"));
+dom.classList.add("active");
+}
+function paySuccess(){
+alert("支付模拟成功！3秒后返回首页");
+setTimeout(()=>location.href="index.html",3000);
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>供应商 - 嘻嘻嘻斯基</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
+body{background:#f5f6f8;}
+header{
+height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
+padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
+}
+.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a.active{color:#ff6600;}
+nav a:hover{color:#ff6600;}
+.container{padding:40px 8%;}
+.title{text-align:center;font-size:32px;margin-bottom:30px;}
+.supplier-list{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+.supp-item{background:#fff;padding:22px;border-radius:10px;}
+.supp-item h3{margin-bottom:10px;color:#222;}
+.tag{display:inline-block;background:#ffe8d6;color:#ff6600;padding:3px 8px;border-radius:3px;font-size:13px;margin:3px;}
+.contact-btn{margin-top:14px;background:#ff6600;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;}
+footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;}
+@media(max-width:900px){.supplier-list{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.supplier-list{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
+<nav>
+<a href="index.html">首页</a>
+<a href="products.html">商品导航</a>
+<a href="suppliers.html" class="active">供应商</a>
+<a href="service.html">采购服务</a>
+<a href="contact.html">联系我们</a>
+<a href="customer-service.html">在线客服</a>
+</nav>
+</header>
+<div class="container">
+<h2 class="title">合作供应商名录</h2>
+<div class="supplier-list">
+<div class="supp-item">
+<h3>深圳智能电子工厂</h3>
+<p>主营：蓝牙耳机、智能家居硬件</p>
+<div style="margin:8px 0;">
+<span class="tag">支持OEM</span>
+<span class="tag">出口资质</span>
+</div>
+<button class="contact-btn" onclick="location.href='customer-service.html'">发起对接</button>
+</div>
+<div class="supp-item">
+<h3>健康食品生产基地</h3>
+<p>主营：代餐、低GI休闲食品</p>
+<div style="margin:8px 0;">
+<span class="tag">食品质检</span>
+<span class="tag">可混批</span>
+</div>
+<button class="contact-btn" onclick="location.href='customer-service.html'">发起对接</button>
+</div>
+<div class="supp-item">
+<h3>户外用品制造有限公司</h3>
+<p>主营：露营装备、户外桌椅</p>
+<div style="margin:8px 0;">
+<span class="tag">定制印花</span>
+<span class="tag">跨境专供</span>
+</div>
+<button class="contact-btn" onclick="location.href='customer-service.html'">发起对接</button>
+</div>
+<div class="supp-item">
+<h3>母婴纺织品工厂</h3>
+<p>主营：隔尿垫、母婴家纺用品</p>
+<div style="margin:8px 0;">
+<span class="tag">A类母婴标准</span>
+<span class="tag">小批量接单</span>
+</div>
+<button class="contact-btn" onclick="location.href='customer-service.html'">发起对接</button>
+</div>
+</div>
+</div>
+<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1166,6 +1336,7 @@ padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-inde
 }
 .logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
 nav a{text-decoration:none;color:#333;margin:0 14px;}
+nav a.active{color:#ff6600;}
 nav a:hover{color:#ff6600;}
 .container{padding:40px 8%;max-width:1200px;margin:0 auto;}
 .title{text-align:center;font-size:32px;margin-bottom:40px;}
@@ -1185,8 +1356,9 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 <a href="index.html">首页</a>
 <a href="products.html">商品导航</a>
 <a href="suppliers.html">供应商</a>
-<a href="service.html" style="color:#ff6600">采购服务</a>
+<a href="service.html" class="active">采购服务</a>
 <a href="contact.html">联系我们</a>
+<a href="customer-service.html">在线客服</a>
 </nav>
 </header>
 <div class="container">
@@ -1201,67 +1373,4 @@ footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px
 <p>支持logo印刷、包装定制、产品改款，协助客户打造自有品牌商品。</p>
 </div>
 <div class="service-card">
-<h3>出口资质代办</h3>
-<p>对接报关、商检资料，协助跨境商家完成海外出口所需全套资质。</p>
-</div>
-<div class="service-card">
-<h3>样品协调</h3>
-<p>协调工厂寄送样品，跟进样品修改、确认，降低大批量采购风险。</p>
-</div>
-<div class="service-card">
-<h3>价格谈判协助</h3>
-<p>依托平台采购规模，协助采购商和工厂洽谈更有竞争力供货价格。</p>
-</div>
-<div class="service-card">
-<h3>订单跟进质检</h3>
-<p>生产进度跟踪，出货前抽检，减少残次品、延期交货问题。</p>
-</div>
-</div>
-</div>
-<footer>© 2026 嘻嘻嘻斯基 Xixixisiji Global Supply</footer>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>联系我们 - 嘻嘻嘻斯基</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei"}
-body{background:#f5f6f8;}
-header{
-height:80px;background:#fff;display:flex;align-items:center;justify-content:space-between;
-padding:0 8%;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:999;
-}
-.logo{font-size:28px;font-weight:bold;color:#ff6600;cursor:pointer;}
-nav a{text-decoration:none;color:#333;margin:0 14px;}
-nav a:hover{color:#ff6600;}
-.container{padding:40px 8%;display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1200px;margin:0 auto;}
-.title{text-align:center;font-size:32px;margin-bottom:30px;grid-column:1/-1;}
-.info-block{background:#fff;padding:30px;border-radius:12px;}
-.info-block h3{margin-bottom:20px;font-size:22px;}
-.info-block p{margin:12px 0;color:#444;line-height:1.7;}
-.form-block{background:#fff;padding:30px;border-radius:12px;}
-.form-block h3{margin-bottom:20px;font-size:22px;}
-.form-block input,.form-block textarea{width:100%;padding:12px;margin-bottom:14px;border:1px solid #ddd;border-radius:6px;outline:none;}
-.submit-btn{width:100%;padding:13px;background:#ff6600;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:16px;}
-footer{background:#222;color:#fff;text-align:center;padding:25px;margin-top:60px;font-size:14px;grid-column:1/-1;}
-@media(max-width:768px){.container{grid-template-columns:1fr;}}
-</style>
-</head>
-<body>
-<header>
-<div class="logo" onclick="location.href='index.html'">嘻嘻嘻斯基</div>
-<nav>
-<a href="index.html">首页</a>
-<a href="products.html">商品导航</a>
-<a href="suppliers.html">供应商</a>
-<a href="service.html">采购服务</a>
-<a href="contact.html" style="color:#ff6600">联系我们</a>
-</nav>
-</header>
-<div class="container">
-<h2 class="title">联系我们</h2>
-<div class="info-block">
-<h3>联系方式</h3>
-<p>📞 业务热线
+<h3>出口资质
