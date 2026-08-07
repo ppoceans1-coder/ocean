@@ -15,12 +15,14 @@ header{
 }
 .logo{font-size:22px;font-weight:bold;color:#ff6600;cursor:pointer;}
 .logo span{font-size:12px;color:#888;font-weight:normal;display:block;}
-nav a{text-decoration:none;color:#333;margin:0 12px;font-size:15px;cursor:pointer;}
+nav a{text-decoration:none;color:#333;margin:0 12px;font-size:15px;cursor:pointer;position:relative;}
 nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
+.badge{background:#ff6600;color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:3px;vertical-align:top;}
 .header-btns{display:flex;gap:10px;}
 .btn{background:#ff6600;color:#fff;border:none;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:14px;}
 .btn-secondary{background:#0088ff;}
 .btn-outline{background:#fff;border:1px solid #ff6600;color:#ff6600;}
+.btn-danger{background:#e6a23c;}
 
 /* 页面视图容器控制 */
 .page-view{display:none;padding-bottom:60px;}
@@ -48,7 +50,15 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 .detail-img img{width:100%;border-radius:8px;}
 .price-box{background:#fff7f2;padding:15px;border-radius:8px;margin:15px 0;}
 
-/* 3. 在线客服样式 */
+/* 3. 购物车列表表格样式 */
+.cart-table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.cart-table th, .cart-table td{padding:15px;text-align:left;border-bottom:1px solid #eee;}
+.cart-table th{background:#fafafa;}
+.cart-item-img{width:60px;height:60px;object-fit:cover;border-radius:4px;vertical-align:middle;margin-right:10px;}
+.cart-footer{background:#fff;padding:20px;border-radius:8px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.qty-btn{width:28px;height:28px;border:1px solid #ccc;background:#fff;cursor:pointer;font-weight:bold;}
+
+/* 4. 在线客服样式 */
 .chat-box{max-width:800px;margin:20px auto;background:#fff;height:500px;border-radius:10px;display:flex;flex-direction:column;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
 .chat-body{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;}
 .chat-msg{max-width:70%;padding:10px 15px;border-radius:8px;font-size:14px;}
@@ -57,21 +67,21 @@ nav a:hover, nav a.active{color:#ff6600;font-weight:bold;}
 .chat-input{padding:15px;border-top:1px solid #eee;display:flex;gap:10px;}
 .chat-input input{flex:1;padding:10px;border:1px solid #ddd;border-radius:4px;outline:none;}
 
-/* 4. 收银结算页样式 */
+/* 5. 收银结算页样式 */
 .checkout-box{max-width:700px;margin:20px auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
 .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0;}
 .pay-card{border:2px solid #ddd;padding:15px;border-radius:6px;text-align:center;cursor:pointer;}
 .pay-card.active{border-color:#ff6600;background:#fff7f2;}
 
-/* 页脚样式强化 */
+/* 页脚样式 */
 footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 .footer-container{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;max-width:1200px;margin:0 auto;padding-bottom:30px;border-bottom:1px solid #3e4451;}
 .footer-col h4{color:#fff;font-size:16px;margin-bottom:18px;}
 .footer-col ul{list-style:none;}
 .footer-col ul li{margin-bottom:10px;}
-.footer-col ul li a{color:#abb2bf;text-decoration:none;font-size:14px;transition:0.2s;}
+.footer-col ul li a{color:#abb2bf;text-decoration:none;font-size:14px;transition:0.2s;cursor:pointer;}
 .footer-col ul li a:hover{color:#ff6600;}
-.contact-info p{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.contact-info p{font-size:14px;margin-bottom:10px;}
 .copyright{text-align:center;font-size:13px;color:#7f848e;padding-top:20px;}
 
 @media(max-width:768px){
@@ -87,11 +97,13 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
   <nav>
     <a onclick="switchPage('home')" id="nav-home" class="active">首页</a>
     <a onclick="switchPage('products')" id="nav-products">商品大厅</a>
+    <a onclick="switchPage('cart')" id="nav-cart">购物车 <span class="badge" id="cartCount">0</span></a>
     <a onclick="switchPage('suppliers')" id="nav-suppliers">供应商</a>
     <a onclick="switchPage('chat')" id="nav-chat">在线客服</a>
   </nav>
   <div class="header-btns">
-    <button class="btn btn-secondary" onclick="switchPage('chat')">💬 客服咨询</button>
+    <button class="btn btn-secondary" onclick="switchPage('cart')">🛒 采购车 (<span id="cartBtnCount">0</span>)</button>
+    <button class="btn btn-outline" onclick="switchPage('chat')">💬 客服咨询</button>
   </div>
 </header>
 
@@ -147,15 +159,50 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
           <input type="number" id="orderQty" value="100" min="100" style="padding:8px;width:100px;"> 件
         </div>
         <div style="display:flex;gap:10px;">
-          <button class="btn btn-outline" onclick="switchPage('chat')">💬 咨询客服</button>
-          <button class="btn" onclick="startCheckout()">💳 立即采购下单</button>
+          <button class="btn btn-outline" onclick="addToCart()">🛒 加入购物车</button>
+          <button class="btn" onclick="directCheckout()">💳 立即采购下单</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 视图 4：供应商大厅 -->
+<!-- 视图 4：购物车管理页面 -->
+<div id="view-cart" class="page-view">
+  <div class="container">
+    <h2 class="title">采购购物车管理</h2>
+    <div id="cartContent">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th width="50"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)"></th>
+            <th>商品信息</th>
+            <th>单价</th>
+            <th>采购数量</th>
+            <th>小计</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="cartTableBody">
+          <!-- 动态渲染购物车列表 -->
+        </tbody>
+      </table>
+
+      <div class="cart-footer">
+        <div>
+          <button class="btn btn-outline" onclick="clearCart()">清空购物车</button>
+          <span style="margin-left: 15px; color:#666;">已选择 <strong id="selectedCount" style="color:#ff6600;">0</strong> 件商品</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div>总结算金额：<span class="price" id="cartTotal">$0.00</span></div>
+          <button class="btn" style="padding:10px 25px; font-size:16px;" onclick="checkoutCart()">合并统一结算</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 视图 5：供应商大厅 -->
 <div id="view-suppliers" class="page-view">
   <div class="container">
     <h2 class="title">奇创芯智认证源头工厂</h2>
@@ -174,7 +221,7 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
   </div>
 </div>
 
-<!-- 视图 5：在线客服 -->
+<!-- 视图 6：在线客服 -->
 <div id="view-chat" class="page-view">
   <div class="container">
     <h2 class="title">奇创芯智采购专属客服沟通</h2>
@@ -190,15 +237,14 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
   </div>
 </div>
 
-<!-- 视图 6：订单收银台/支付 -->
+<!-- 视图 7：订单收银台/支付 -->
 <div id="view-checkout" class="page-view">
   <div class="container">
     <div class="checkout-box">
       <h2 style="border-bottom:2px solid #ff6600;padding-bottom:10px;margin-bottom:20px;">订单确认与支付</h2>
       <div style="background:#f9f9f9;padding:15px;border-radius:6px;margin-bottom:20px;">
-        <p><strong>商品：</strong><span id="payProductName">-</span></p>
-        <p><strong>数量：</strong><span id="payQty">0</span> 件</p>
-        <p style="margin-top:10px;"><strong>订单总额：</strong><span class="price" id="payTotal">$0.00</span></p>
+        <div id="checkoutSummary"></div>
+        <p style="margin-top:10px; border-top:1px solid #ddd; padding-top:10px;"><strong>订单应付总额：</strong><span class="price" id="payTotal">$0.00</span></p>
       </div>
       <h3>选择支付方式</h3>
       <div class="pay-methods">
@@ -211,7 +257,7 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
   </div>
 </div>
 
-<!-- 底部页脚：小菜单与通讯方式 -->
+<!-- 底部页脚 -->
 <footer>
   <div class="footer-container">
     <div class="footer-col">
@@ -227,6 +273,7 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
       <ul>
         <li><a onclick="switchPage('home')">平台首页</a></li>
         <li><a onclick="switchPage('products')">全部商品大厅</a></li>
+        <li><a onclick="switchPage('cart')">购物车管理</a></li>
         <li><a onclick="switchPage('suppliers')">认证优质工厂</a></li>
         <li><a onclick="switchPage('chat')">在线客户服务</a></li>
       </ul>
@@ -257,7 +304,7 @@ footer{background:#1e2229;color:#abb2bf;padding:50px 8% 20px;margin-top:60px;}
 </footer>
 
 <script>
-// 扩展后的多品类商品数据源
+// 商品数据源
 const productsData = [
   {
     id: 1, 
@@ -306,36 +353,15 @@ const productsData = [
     moq: 80, 
     img: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600", 
     desc: "210T 防水涂层尼龙面料，PU3000mm 防水指数，高强度航空铝合金帐杆。抗风防暴雨，折叠后体积小巧便携，非常适合户外露营与越野拉练。"
-  },
-  {
-    id: 7, 
-    title: "氮化镓 65W 快充多口充电器", 
-    price: 14.20, 
-    moq: 200, 
-    img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600", 
-    desc: "采用第三代黑科技 GaN 芯片，体积缩小 40%。配备 2C1A 三接口，可同时为笔记本电脑、平板和手机快速充电，兼容 PD3.0/QC4.0 协议。"
-  },
-  {
-    id: 8, 
-    title: "温控变色玻尿酸保湿唇膏", 
-    price: 3.50, 
-    moq: 1000, 
-    img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600", 
-    desc: "天然植物萃取成分，随人体温与 pH 值改变唇色。深层滋润补水，改善唇纹。支持千件级 ODM 私人标签（Private Label）定制。"
-  },
-  {
-    id: 9, 
-    title: "智能静音空气加湿器（带香薰扩散）", 
-    price: 18.60, 
-    moq: 150, 
-    img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600", 
-    desc: "3L 大容量水箱，支持连续加湿 24 小时。低至 28dB 超静音运行，七彩氛围灯与香薰精油添加功能，缺水自动断电保护。"
   }
 ];
 
+// 全局购物车数据：[{ id, product, qty, checked }]
+let cart = [];
 let currentProduct = null;
+let currentCheckoutItems = [];
 
-// 初始化渲染商品
+// 初始化商品
 function renderProducts() {
   const homeGrid = document.getElementById("homeProductGrid");
   const allGrid = document.getElementById("allProductGrid");
@@ -367,10 +393,14 @@ function switchPage(pageId) {
   const navEl = document.getElementById("nav-" + pageId);
   if(navEl) navEl.classList.add("active");
   
+  if(pageId === 'cart') {
+    renderCart();
+  }
+  
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-// 打开商品详情
+// 打开详情页
 function openDetail(id) {
   currentProduct = productsData.find(p => p.id === id);
   if(!currentProduct) return;
@@ -386,19 +416,196 @@ function openDetail(id) {
   switchPage("detail");
 }
 
-// 发起结算
-function startCheckout() {
+// 加入购物车
+function addToCart() {
   const qty = parseInt(document.getElementById("orderQty").value);
   if(qty < currentProduct.moq) {
-    alert("采购数量不能低于最低起订量 (" + currentProduct.moq + "件)");
+    alert("采购数量不能低于起订量 " + currentProduct.moq + " 件");
     return;
   }
   
-  const total = (currentProduct.price * qty).toFixed(2);
-  document.getElementById("payProductName").innerText = currentProduct.title;
-  document.getElementById("payQty").innerText = qty;
-  document.getElementById("payTotal").innerText = "$" + total;
+  const existing = cart.find(item => item.id === currentProduct.id);
+  if(existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      id: currentProduct.id,
+      product: currentProduct,
+      qty: qty,
+      checked: true
+    });
+  }
   
+  updateCartBadge();
+  alert("已成功添加 " + qty + " 件【" + currentProduct.title + "】到购物车！");
+}
+
+// 更新顶栏购物车角标
+function updateCartBadge() {
+  const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").innerText = cart.length;
+  document.getElementById("cartBtnCount").innerText = totalCount;
+}
+
+// 渲染购物车页面
+function renderCart() {
+  const tbody = document.getElementById("cartTableBody");
+  if(cart.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:40px;color:#999;">您的采购购物车是空的，快去选购吧！</td></tr>`;
+    document.getElementById("cartTotal").innerText = "$0.00";
+    document.getElementById("selectedCount").innerText = "0";
+    document.getElementById("selectAll").checked = false;
+    return;
+  }
+  
+  let html = "";
+  cart.forEach(item => {
+    const subtotal = (item.product.price * item.qty).toFixed(2);
+    html += `
+      <tr>
+        <td><input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleItemCheck(${item.id})"></td>
+        <td>
+          <img src="${item.product.img}" class="cart-item-img">
+          <strong>${item.product.title}</strong>
+        </td>
+        <td>$${item.product.price}</td>
+        <td>
+          <button class="qty-btn" onclick="changeQty(${item.id}, -10)">-</button>
+          <input type="number" value="${item.qty}" min="${item.product.moq}" style="width:60px;text-align:center;padding:3px;" onchange="updateQtyInput(${item.id}, this.value)">
+          <button class="qty-btn" onclick="changeQty(${item.id}, 10)">+</button>
+        </td>
+        <td><strong style="color:#ff6600;">$${subtotal}</strong></td>
+        <td><button class="btn btn-outline" style="padding:4px 8px;font-size:12px;" onclick="removeCartItem(${item.id})">删除</button></td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+  
+  // 检查是否全选
+  const allChecked = cart.length > 0 && cart.every(item => item.checked);
+  document.getElementById("selectAll").checked = allChecked;
+  
+  calculateCartTotal();
+}
+
+// 增减购物车数量
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  if(item.qty + delta < item.product.moq) {
+    alert("该商品起订量为 " + item.product.moq + " 件");
+    return;
+  }
+  item.qty += delta;
+  renderCart();
+  updateCartBadge();
+}
+
+// 直接修改输入框数量
+function updateQtyInput(id, val) {
+  const item = cart.find(i => i.id === id);
+  let qty = parseInt(val);
+  if(isNaN(qty) || qty < item.product.moq) {
+    alert("该商品起订量为 " + item.product.moq + " 件");
+    qty = item.product.moq;
+  }
+  item.qty = qty;
+  renderCart();
+  updateCartBadge();
+}
+
+// 单项勾选/取消
+function toggleItemCheck(id) {
+  const item = cart.find(i => i.id === id);
+  if(item) item.checked = !item.checked;
+  renderCart();
+}
+
+// 全选/取消全选
+function toggleSelectAll(el) {
+  cart.forEach(item => item.checked = el.checked);
+  renderCart();
+}
+
+// 计算购物车总价
+function calculateCartTotal() {
+  let total = 0;
+  let count = 0;
+  cart.forEach(item => {
+    if(item.checked) {
+      total += item.product.price * item.qty;
+      count += item.qty;
+    }
+  });
+  document.getElementById("cartTotal").innerText = "$" + total.toFixed(2);
+  document.getElementById("selectedCount").innerText = count;
+}
+
+// 删除单个购物车商品
+function removeCartItem(id) {
+  cart = cart.filter(i => i.id !== id);
+  renderCart();
+  updateCartBadge();
+}
+
+// 清空购物车
+function clearCart() {
+  if(confirm("确定要清空购物车吗？")) {
+    cart = [];
+    renderCart();
+    updateCartBadge();
+  }
+}
+
+// 从购物车发起统一结算
+function checkoutCart() {
+  const selected = cart.filter(item => item.checked);
+  if(selected.length === 0) {
+    alert("请至少勾选一款要结算采购的商品！");
+    return;
+  }
+  
+  currentCheckoutItems = selected;
+  showCheckoutView();
+}
+
+// 详情页直接采购
+function directCheckout() {
+  const qty = parseInt(document.getElementById("orderQty").value);
+  if(qty < currentProduct.moq) {
+    alert("采购数量不能低于起订量 " + currentProduct.moq + " 件");
+    return;
+  }
+  
+  currentCheckoutItems = [{
+    id: currentProduct.id,
+    product: currentProduct,
+    qty: qty,
+    checked: true
+  }];
+  
+  showCheckoutView();
+}
+
+// 展示收银结算页
+function showCheckoutView() {
+  const summaryBox = document.getElementById("checkoutSummary");
+  let html = "";
+  let grandTotal = 0;
+  
+  currentCheckoutItems.forEach(item => {
+    const subtotal = item.product.price * item.qty;
+    grandTotal += subtotal;
+    html += `
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;">
+        <span><strong>${item.product.title}</strong> × ${item.qty}件</span>
+        <span style="color:#ff6600;">$${subtotal.toFixed(2)}</span>
+      </div>
+    `;
+  });
+  
+  summaryBox.innerHTML = html;
+  document.getElementById("payTotal").innerText = "$" + grandTotal.toFixed(2);
   switchPage("checkout");
 }
 
@@ -410,19 +617,21 @@ function selectPay(el) {
 
 // 确认支付
 function confirmPayment() {
-  alert("订单支付成功！奇创芯智供应链系统已自动生成采购合同，专员将尽快与您对接跟进发货。");
+  alert("订单支付成功！奇创芯智供应链系统已生成采购合同，专员将尽快为您安排发货。");
+  // 清理结算过的购物车项
+  const checkedIds = currentCheckoutItems.map(i => i.id);
+  cart = cart.filter(item => !checkedIds.includes(item.id));
+  updateCartBadge();
   switchPage("home");
 }
 
-// 客服对话功能
+// 客服对话
 function sendChat() {
   const input = document.getElementById("chatInput");
   const txt = input.value.trim();
   if(!txt) return;
   
   const body = document.getElementById("chatBody");
-  
-  // 用户发送
   const userDiv = document.createElement("div");
   userDiv.className = "chat-msg msg-user";
   userDiv.innerText = txt;
@@ -431,7 +640,6 @@ function sendChat() {
   input.value = "";
   body.scrollTop = body.scrollHeight;
   
-  // 模拟自动回复
   setTimeout(() => {
     const robotDiv = document.createElement("div");
     robotDiv.className = "chat-msg msg-robot";
